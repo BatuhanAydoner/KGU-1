@@ -9,7 +9,6 @@
         >
           <transition enter-active-class="animate__animated animate__bounceIn">
             <LoginView v-if="this.$store.state.nowComponents === 'login'" />
-
             <SignUp v-else-if="this.$store.state.nowComponents === 'signup'" />
             <ForgottenPassword
               v-else-if="this.$store.state.nowComponents === 'forgot'"

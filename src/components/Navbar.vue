@@ -5,7 +5,10 @@
     </router-link>
     <div>
       <router-link to="/">Ana Sayfa</router-link>
-      <router-link class="login-button" to="giris-yap" @click="LoginViewLogin" onclick="location.reload()"
+      <router-link
+        class="login-button"
+        to="giris-yap"
+        @click.native="LoginViewLogin"
         >Giriş Yap</router-link
       >
     </div>
