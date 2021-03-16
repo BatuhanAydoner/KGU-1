@@ -1,16 +1,25 @@
 <template>
   <nav class="container d-flex justify-content-between align-items-center">
-    <img class="logo" src="@/assets/Logo.png" alt="Logo" />
+    <router-link to="/">
+      <img class="logo" src="@/assets/Logo.png" alt="Logo" />
+    </router-link>
     <div>
       <router-link to="/">Ana Sayfa</router-link>
-      <router-link class="login-button" to="giris-yap">Giriş Yap</router-link>
+      <router-link class="login-button" to="giris-yap" @click="LoginViewLogin"
+        >Giriş Yap</router-link
+      >
     </div>
   </nav>
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
-  name: "Navbar"
+  name: "Navbar",
+  methods: {
+    ...mapActions(["LoginViewLogin"])
+  }
 };
 </script>
 
