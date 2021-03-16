@@ -1,4 +1,12 @@
-# kgu
+# Kariyer Gelişim Uygulaması -KGU-
+> This Repo is Turkish Software Engineering Graduation Project.
+Açıklama Eklenecektir.
+
+## To Do
+- [x] Create Login & SignUp Page
+- [ ] Optimize All Images & Change Animation of Login View's Components
+- [ ] Fix Back to Login Page bug
+
 
 ## Project setup
 ```
