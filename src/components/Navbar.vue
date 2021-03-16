@@ -5,7 +5,7 @@
     </router-link>
     <div>
       <router-link to="/">Ana Sayfa</router-link>
-      <router-link class="login-button" to="giris-yap" @click="LoginViewLogin"
+      <router-link class="login-button" to="giris-yap" @click="LoginViewLogin" onclick="location.reload()"
         >Giriş Yap</router-link
       >
     </div>

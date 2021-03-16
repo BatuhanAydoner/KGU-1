@@ -7,11 +7,7 @@
         <div
           class="height-for-center col-4 d-flex justify-content-center align-items-center ml-5"
         >
-          <transition
-            mode="out-in"
-            enter-active-class="animate__animated animate__bounceIn"
-            leave-active-class="animate__animated animate__bounceOut"
-          >
+          <transition enter-active-class="animate__animated animate__bounceIn">
             <LoginView v-if="this.$store.state.nowComponents === 'login'" />
 
             <SignUp v-else-if="this.$store.state.nowComponents === 'signup'" />
