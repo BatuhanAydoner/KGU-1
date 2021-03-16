@@ -1,17 +1,16 @@
 <template>
-  <v-app >
+  <v-app>
+    <Navbar />
     <v-container class="home-body">
-      <nav class="container d-flex justify-content-between">
-        <img class="logo" src="@/assets/Logo.png" alt="Logo" />
-        <div>
-          <router-link to="/">Ana Sayfa</router-link> |
-          <router-link to="about">Nasıl Kullanılır?</router-link> |
-          <router-link to="about">Giriş Yap</router-link>
-        </div>
-      </nav>
-      <div class="desription">
-        <h1 class="">Header</h1>
-        <p class="text-secondary">aciklama</p>
+      <div class="description w-50">
+        <h1>Uzman Fikirlere Ulaşmanın En Kolay Yolu</h1>
+        <p class="header-description text-secondary mt-5">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet
+          asperiores, aspernatur at blanditiis consequuntur culpa ea eaque error
+          iure nesciunt nostrum, quaerat rem vel! Assumenda consequatur debitis
+          expedita natus ullam? Lorem ipsum dolor sit amet, consectetur
+          adipisicing elit.
+        </p>
       </div>
     </v-container>
     <img
@@ -23,8 +22,12 @@
 </template>
 
 <script>
+import Navbar from "@/components/Navbar";
 export default {
-  name: "Home"
+  name: "Home",
+  components: {
+    Navbar
+  }
 };
 </script>
 
@@ -32,17 +35,16 @@ export default {
 .home-body {
   font-family: "Comfortaa", cursive;
 }
+.header-description {
+  font-size: 22px;
+}
 .img-purple-hand {
   height: 80vh;
   position: absolute;
   bottom: 0;
   right: 7vw;
 }
-.desription{
+.description {
   margin-top: 9vh;
-}
-
-.logo {
-  width: 7vw;
 }
 </style>
