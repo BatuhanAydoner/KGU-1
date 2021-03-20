@@ -6,13 +6,15 @@
       <input type="password" placeholder="Şifre" />
     </div>
     <button class="login-button">Giriş Yap</button>
-    <a @click="LoginViewForgotPassword" class="mt-3 mb-3 text-secondary">
+    <a @click="LoginViewForgotPassword" class="mt-3 text-gray-500 ">
       Şifremi Unuttum
     </a>
-    <div class="d-flex justify-content-center mt-n5 ">
-      <hr class="w-75" />
-    </div>
-    <a @click="LoginViewSignUp"> Hesabınız Yok mu? <br />Kayıt Olun. </a>
+    <a
+      @click="LoginViewSignUp"
+      class="text-muted absolute bottom-20 w-max text-center left-0 right-0 mx-auto"
+    >
+      Hesabınız Yok mu? Kayıt Olun
+    </a>
   </div>
 </template>
 
@@ -27,7 +29,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 input {
   width: 300px;
   height: 53px;
@@ -61,6 +63,8 @@ input:focus {
 a {
   text-decoration: none;
   display: block;
-  color: #0066ff;
+  &.text-muted {
+    color: rgba(75, 85, 99, 0.7);
+  }
 }
 </style>

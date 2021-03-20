@@ -1,5 +1,5 @@
 <template>
-  <nav class="container d-flex justify-content-between align-items-center">
+  <nav class="container">
     <router-link to="/">
       <img class="logo" src="@/assets/Logo.png" alt="Logo" />
     </router-link>
@@ -27,20 +27,69 @@ export default {
 </script>
 
 <style scoped>
-nav {
-  font-family: "Comfortaa", cursive;
-}
-.logo {
-  width: 7vw;
+@media (max-width: 768px) {
+  .logo {
+    width: 27vw;
+  }
+
+  nav {
+    font-family: "Comfortaa", cursive;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  nav div {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 5%;
+  }
+
+  nav div a {
+    text-decoration: none;
+    text-align: center;
+    font-size: 1.4rem;
+    margin-top: 0.3rem;
+  }
 }
 
-a {
-  text-decoration: none;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 18px;
-  line-height: 24px;
-  margin-right: 15px;
+@media (min-width: 769px) and (max-width: 1024px) {
+  .logo {
+    width: 17vw;
+  }
+
+  nav {
+    font-family: "Comfortaa", cursive;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  a {
+    text-decoration: none;
+    font-size: 22px;
+    margin-right: 15px;
+  }
+}
+
+@media (min-width: 1025px) {
+  .logo {
+    width: 7vw;
+  }
+
+  nav {
+    font-family: "Comfortaa", cursive;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  a {
+    text-decoration: none;
+    font-size: 22px;
+    margin-right: 15px;
+  }
 }
 .login-button {
   background: linear-gradient(293.79deg, #fe5762 25.78%, #ff6ba1 112.77%);
