@@ -1,18 +1,15 @@
 <template>
   <div class="text-center">
-    <h2 class="mb-5">Hoşgeldiniz</h2>
+    <h2 class="mb-5 text-2xl">Hoşgeldiniz</h2>
     <div>
-      <input type="email" placeholder="E-Posta" />
+      <input type="email" placeholder="E-Posta" /> <br />
       <input type="password" placeholder="Şifre" />
     </div>
     <button class="login-button">Giriş Yap</button>
     <a @click="LoginViewForgotPassword" class="mt-3 text-gray-500 ">
       Şifremi Unuttum
     </a>
-    <a
-      @click="LoginViewSignUp"
-      class="text-muted absolute bottom-20 w-max text-center left-0 right-0 mx-auto"
-    >
+    <a @click="LoginViewSignUp" class="text-muted">
       Hesabınız Yok mu? Kayıt Olun
     </a>
   </div>
@@ -64,7 +61,7 @@ a {
   text-decoration: none;
   display: block;
   &.text-muted {
-    color: rgba(75, 85, 99, 0.7);
+    color: rgba(107, 114, 128, 1);
   }
 }
 </style>

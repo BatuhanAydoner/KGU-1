@@ -1,15 +1,15 @@
 <template>
   <div class="text-center">
-    <h2 class="mb-5">Hesap Oluştur</h2>
+    <h2 class="mb-5 text-2xl">Hesap Oluştur</h2>
     <div>
-      <input type="email" placeholder="E-Posta" />
-      <input type="password" placeholder="Şifre" />
+      <input type="email" placeholder="E-Posta" /> <br />
+      <input type="password" placeholder="Şifre" /> <br />
       <input type="password" placeholder="Şifre Doğrula" />
     </div>
     <button class="login-button">Hesap Oluştur</button>
     <div class="mt-5">
-      <button class="text-secondary" @click="LoginViewLogin">
-        Zaten Hesabınız Var mı? <br />Giriş Yap
+      <button class="text-gray-500" @click="LoginViewLogin">
+        ⬅ Hesabınız Var mı? Giriş Yapın
       </button>
     </div>
   </div>

@@ -1,12 +1,14 @@
 <template>
   <div class="text-center">
-    <h2 class="mb-5">Şifreyı Sıfırla</h2>
+    <h2 class="mb-5 text-2xl">Şifreyı Sıfırla</h2>
     <div>
       <input type="email" placeholder="E-Posta" />
     </div>
     <button class="login-button">Şifreyi Sıfırla</button>
-    <div class="mt-5">
-      <button class="text-secondary" @click="LoginViewLogin">Giriş Yap</button>
+    <div class="mt-3">
+      <button class="text-gray-500" @click="LoginViewLogin">
+        ⬅ Giriş Yap
+      </button>
     </div>
   </div>
 </template>

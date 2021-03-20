@@ -1,21 +1,24 @@
 <template>
-  <div>
+  <div class="h-screen">
     <Navbar />
-    <div class="container">
-      <div class="main">
-        <!--  Login Form Div     -->
-        <div class="height-for-center ">
-          <transition enter-active-class="animate__animated animate__bounceIn">
+    <div
+      class="container height-container xl:flex xl:items-center xl:justify-center "
+    >
+      <!--  Login Form Div     -->
+      <div class="height-for-center xl:flex xl:items-center xl:justify-center ">
+        <transition enter-active-class="animate__animated animate__bounceIn">
+          <div class="xl:flex xl:justify-center xl:items-center xl:mx-auto">
             <LoginView v-if="this.$store.state.nowComponents === 'login'" />
             <SignUp v-else-if="this.$store.state.nowComponents === 'signup'" />
             <ForgottenPassword
               v-else-if="this.$store.state.nowComponents === 'forgot'"
             />
-          </transition>
-        </div>
-
+          </div>
+        </transition>
         <!--  Login Image Div     -->
-        <div class="height-for-center main-image ">
+        <div
+          class="height-for-center invisible md:visible md:mt-4 xl:w-6/12 2xl:w-5/12 mx-auto"
+        >
           <img
             src="@/assets/without_login/login-image.png"
             alt="login image"
@@ -48,37 +51,10 @@ export default {
 .container {
   font-family: "Comfortaa", cursive;
 }
-@media (max-width: 768px) {
-  .height-for-center {
-    margin-top: 1rem;
-  }
-  .height-for-center img {
-    display: none;
-  }
-}
 
-@media (min-width: 769px) and (max-width: 1024px) {
-  .height-for-center img {
-    display: none;
-  }
-
-  .height-for-center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .main-image {
-    margin-top: 10vh;
-  }
-}
-
-@media (min-width: 1025px) {
-  .main {
-    display: flex;
-    flex-wrap: wrap;
-  }
-  .height-for-center img {
-    width: 30vw;
+@media only screen and (min-width: 1400px) {
+  .height-container {
+    height: 80vh !important;
   }
 }
 </style>
