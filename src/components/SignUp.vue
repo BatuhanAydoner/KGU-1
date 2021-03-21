@@ -2,11 +2,20 @@
   <div class="text-center">
     <h2 class="mb-5 text-2xl">Hesap Oluştur</h2>
     <div>
-      <input type="email" placeholder="E-Posta" /> <br />
-      <input type="password" placeholder="Şifre" /> <br />
-      <input type="password" placeholder="Şifre Doğrula" />
+      <input v-model="newUser.name" type="text" placeholder="Isim" /> <br />
+      <input v-model="newUser.lastname" type="text" placeholder="Soyisim" />
+      <br />
+      <input v-model="newUser.email" type="email" placeholder="E-Posta" />
+      <br />
+      <input v-model="newUser.password" type="password" placeholder="Şifre" />
+      <br />
+      <input
+        v-model="newUser.repassword"
+        type="password"
+        placeholder="Şifre Doğrula"
+      />
     </div>
-    <button class="login-button">Hesap Oluştur</button>
+    <button class="login-button" @click="signupKGU">Hesap Oluştur</button>
     <div class="mt-5">
       <button class="text-gray-500" @click="LoginViewLogin">
         ⬅ Hesabınız Var mı? Giriş Yapın
@@ -17,11 +26,54 @@
 
 <script>
 import { mapActions } from "vuex";
-
+import axios from "axios";
 export default {
-  name: "ForgottenPassword",
+  name: "SignUp",
+  data() {
+    return {
+      newUser: {
+        name: "",
+        lastname: "",
+        email: "",
+        password: "",
+        repassword: ""
+      }
+    };
+  },
   methods: {
-    ...mapActions(["LoginViewLogin"])
+    ...mapActions(["LoginViewLogin"]),
+    signupKGU() {
+      // axios
+      //   .post(`http://kguproject.herokuapp.com/api/users/signup`, {
+      //     body: { ...this.newUser }
+      //   })
+      //   .then(() => {
+      //     console.log("basarili");
+      //   })
+      //   .catch(() => {
+      //     console.log({ ...this.newUser });
+      //     console.log("basarili degil");
+      //   });
+
+      axios({
+        method: "post",
+        url: "http://kguproject.herokuapp.com/api/users/signup",
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Headers": "Content-Type, Authorization"
+        },
+        data: {
+          ...this.newUser
+        }
+      })
+        .then(res => {
+          console.log(res);
+        })
+        .catch(e => {
+          console.log(e);
+          console.log("basarisiz");
+        });
+    }
   }
 };
 </script>
