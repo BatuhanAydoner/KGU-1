@@ -57,7 +57,7 @@ export default {
 
       axios({
         method: "post",
-        url: "http://kguproject.herokuapp.com/api/users/signup",
+        url: "https://kguproject.herokuapp.com/api/users/signup",
         headers: {
           "Access-Control-Allow-Origin": "*",
           "Access-Control-Allow-Headers": "Content-Type, Authorization"
