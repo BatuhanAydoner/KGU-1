@@ -2,7 +2,8 @@
   <div class="text-center">
     <h2 class="mb-5 text-2xl">Hesap Oluştur</h2>
     <div>
-      <input v-model="newUser.name" type="text" placeholder="Isim" /> <br />
+      <input v-model="newUser.firstname" type="text" placeholder="Isim" />
+      <br />
       <input v-model="newUser.lastname" type="text" placeholder="Soyisim" />
       <br />
       <input v-model="newUser.email" type="email" placeholder="E-Posta" />
@@ -17,7 +18,13 @@
     </div>
     <button class="login-button" @click="signupKGU">Hesap Oluştur</button>
     <div class="mt-5">
-      <button class="text-gray-500" @click="LoginViewLogin">
+      <button
+        class="text-gray-500"
+        @click="
+          LoginViewLogin;
+          toggleLoading;
+        "
+      >
         ⬅ Hesabınız Var mı? Giriş Yapın
       </button>
     </div>
@@ -27,12 +34,13 @@
 <script>
 import { mapActions } from "vuex";
 import axios from "axios";
+
 export default {
   name: "SignUp",
   data() {
     return {
       newUser: {
-        name: "",
+        firstname: "",
         lastname: "",
         email: "",
         password: "",
@@ -43,36 +51,22 @@ export default {
   methods: {
     ...mapActions(["LoginViewLogin"]),
     signupKGU() {
-      // axios
-      //   .post(`http://kguproject.herokuapp.com/api/users/signup`, {
-      //     body: { ...this.newUser }
-      //   })
-      //   .then(() => {
-      //     console.log("basarili");
-      //   })
-      //   .catch(() => {
-      //     console.log({ ...this.newUser });
-      //     console.log("basarili degil");
-      //   });
-
       axios({
-        method: "post",
+        method: "POST",
         url: "https://kguproject.herokuapp.com/api/users/signup",
+        params: {
+          ...this.newUser
+        },
         headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Headers": "Content-Type, Authorization"
+          "Content-Type": "application/json; charset=utf-8"
         },
         data: {
           ...this.newUser
         }
-      })
-        .then(res => {
-          console.log(res);
-        })
-        .catch(e => {
-          console.log(e);
-          console.log("basarisiz");
-        });
+      }).then(res => {
+        console.log(this.newUser);
+        console.log(res);
+      });
     }
   }
 };

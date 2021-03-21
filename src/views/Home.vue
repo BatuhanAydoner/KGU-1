@@ -1,37 +1,42 @@
 <template>
-  <v-app class="overflow-hidden ">
-    <Navbar />
-    <v-container class="home-body">
-      <div class="description ">
-        <h1 class="text-2xl md:text-3xl lg:text-4xl text-center">
-          Uzman Fikirlere Ulaşmanın En Kolay Yolu
-        </h1>
-        <p
-          class="header-description text-gray-500 text-lg md:text-xl lg:text-2xl mt-3 xl:max-w-screen-xl text-center mx-auto"
-        >
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet
-          asperiores, aspernatur at blanditiis consequuntur culpa ea eaque error
-          iure nesciunt nostrum, quaerat rem vel! Assumenda consequatur debitis
-          expedita natus ullam? Lorem ipsum dolor sit amet, consectetur
-          adipisicing elit.
-        </p>
-        <div
-          class="app-markets w-3/6 md:w-2/6 xl:w-56 2xl:w-64 mx-auto xl:absolute xl:bottom-5 xl:right-5 "
-        >
-          <img
-            src="@/assets/without_login/googlePlay.png"
-            alt="Google Play"
-            class="mx-auto"
-          />
-        </div>
-      </div>
-    </v-container>
-    <img
-      class="img-purple-hand md:w-3/6 xl:w-96 2xl:w-3/12 md:mx-auto md:absolute md:bottom-0 md:left-0 md:right-0 md:text-center "
-      src="@/assets/without_login/purple_hand.png"
-      alt="purple hand"
-    />
-  </v-app>
+  <div class="home">
+    <div v-if="!this.$store.state.isLoggedIn" class="noLoggedHomePage">
+      <v-app class="overflow-hidden ">
+        <Navbar />
+        <v-container class="home-body">
+          <div class="description ">
+            <h1 class="text-2xl md:text-3xl lg:text-4xl text-center">
+              Uzman Fikirlere Ulaşmanın En Kolay Yolu
+            </h1>
+            <p
+              class="header-description text-gray-500 text-lg md:text-xl lg:text-2xl mt-3 xl:max-w-screen-xl text-center mx-auto"
+            >
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet
+              asperiores, aspernatur at blanditiis consequuntur culpa ea eaque
+              error iure nesciunt nostrum, quaerat rem vel! Assumenda
+              consequatur debitis expedita natus ullam? Lorem ipsum dolor sit
+              amet, consectetur adipisicing elit.
+            </p>
+            <div
+              class="app-markets w-3/6 md:w-2/6 xl:w-56 2xl:w-64 mx-auto xl:absolute xl:bottom-5 xl:right-5 "
+            >
+              <img
+                src="@/assets/without_login/googlePlay.png"
+                alt="Google Play"
+                class="mx-auto"
+              />
+            </div>
+          </div>
+        </v-container>
+        <img
+          class="img-purple-hand md:w-3/6 xl:w-96 2xl:w-3/12 md:mx-auto md:absolute md:bottom-0 md:left-0 md:right-0 md:text-center "
+          src="@/assets/without_login/purple_hand.png"
+          alt="purple hand"
+        />
+      </v-app>
+    </div>
+    <div v-else class="loggedHomePage">Giris yapildi Ana sayfa</div>
+  </div>
 </template>
 
 <script>

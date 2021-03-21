@@ -5,7 +5,8 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    nowComponents: "login"
+    nowComponents: "login",
+    isLoggedIn: false
   },
   mutations: {
     LoginViewLogin() {
@@ -16,6 +17,9 @@ export default new Vuex.Store({
     },
     LoginViewForgotPassword() {
       this.state.nowComponents = "forgot";
+    },
+    toggleLoading() {
+      this.state.isLoggedIn = !this.state.isLoggedIn;
     }
   },
   actions: {
@@ -27,6 +31,9 @@ export default new Vuex.Store({
     },
     LoginViewForgotPassword(context) {
       context.commit("LoginViewForgotPassword");
+    },
+    toggleLoading(context) {
+      context.commit("toggleLoading");
     }
   }
 });

@@ -2,10 +2,10 @@
   <div class="text-center">
     <h2 class="mb-5 text-2xl">Hoşgeldiniz</h2>
     <div>
-      <input type="email" placeholder="E-Posta" /> <br />
-      <input type="password" placeholder="Şifre" />
+      <input v-model="user.email" type="email" placeholder="E-Posta" /> <br />
+      <input v-model="user.password" type="password" placeholder="Şifre" />
     </div>
-    <button class="login-button">Giriş Yap</button>
+    <button class="login-button" @click="signInKGU">Giriş Yap</button>
     <a @click="LoginViewForgotPassword" class="mt-3 text-gray-500 ">
       Şifremi Unuttum
     </a>
@@ -17,11 +17,38 @@
 
 <script>
 import { mapActions } from "vuex";
+import axios from "axios";
 
 export default {
   name: "Login",
+  data() {
+    return {
+      user: {
+        email: "",
+        password: ""
+      }
+    };
+  },
   methods: {
-    ...mapActions(["LoginViewSignUp", "LoginViewForgotPassword"])
+    ...mapActions(["LoginViewSignUp", "LoginViewForgotPassword"]),
+    signInKGU() {
+      axios({
+        method: "POST",
+        url: "https://kguproject.herokuapp.com/api/users/signin",
+        params: {
+          ...this.user
+        },
+        headers: {
+          "Content-Type": "application/json; charset=utf-8"
+        },
+        data: {
+          ...this.user
+        }
+      }).then(res => {
+        console.log(this.user);
+        console.log(res);
+      });
+    }
   }
 };
 </script>
