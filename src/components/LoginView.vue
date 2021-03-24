@@ -4,10 +4,27 @@
       <div class="text-center">
         <h2 class="mb-5 text-2xl">Hoşgeldiniz</h2>
         <div>
-          <input v-model="user.email" type="email" placeholder="E-Posta" />
+          <input
+            class="form-string"
+            v-model="user.email"
+            type="email"
+            placeholder="E-Posta"
+          />
           <br />
-          <input v-model="user.password" type="password" placeholder="Şifre" />
+          <input
+            class="form-string"
+            v-model="user.password"
+            type="password"
+            placeholder="Şifre"
+          />
+          <div class="flex mb-2 text-center mx-auto">
+            <label class="flex justify-center items-center">
+              <input v-model="isMentor" type="checkbox" class="form-checkbox" />
+              <span class="ml-2">Danışman Hesap</span>
+            </label>
+          </div>
         </div>
+
         <button v-if="!visible" class="login-button" @click="signInKGU">
           Giriş Yap
         </button>
@@ -42,7 +59,8 @@ export default {
         email: "fohidolyqi@mailinator.com",
         password: "Pa$$w0rd!"
       },
-      visible: false
+      visible: false,
+      isMentor: false
     };
   },
   components: {
@@ -50,36 +68,61 @@ export default {
   },
 
   methods: {
-    ...mapActions(["LoginViewSignUp", "LoginViewForgotPassword"]),
+    ...mapActions([
+      "LoginViewSignUp",
+      "LoginViewForgotPassword",
+      "toggleLoggedIn"
+    ]),
     signInKGU() {
       this.visible = true;
       let loader = this.$loading.show({
         loader: "dots"
       });
 
-      axios({
-        method: "POST",
-        url: "https://kguproject.herokuapp.com/api/users/signin",
-        headers: {
-          "Content-Type": "application/json; charset=utf-8"
-        },
-        data: {
-          ...this.user
-        }
-      }).then(res => {
-        loader.hide();
-        this.visible = false;
-        console.log(this.user);
-        console.log(res);
-        this.$router.push("/");
-      });
+      if (this.isMentor) {
+        axios({
+          method: "POST",
+          url: "https://kguproject.herokuapp.com/api/mentors/signin",
+          headers: {
+            "Content-Type": "application/json; charset=utf-8"
+          },
+          data: {
+            ...this.user
+          }
+        }).then(res => {
+          loader.hide();
+          this.visible = false;
+          console.log(this.user);
+          console.log(res);
+          this.toggleLoggedIn();
+          this.$router.push("/");
+        });
+      } else if (!this.isMentor) {
+        axios({
+          method: "POST",
+          url: "https://kguproject.herokuapp.com/api/users/signin",
+          headers: {
+            "Content-Type": "application/json; charset=utf-8"
+          },
+          data: {
+            ...this.user
+          }
+        }).then(res => {
+          loader.hide();
+          this.visible = false;
+          console.log(this.user);
+          console.log(res);
+          this.toggleLoggedIn();
+          this.$router.push("/");
+        });
+      }
     }
   }
 };
 </script>
 
 <style scoped lang="scss">
-input {
+.form-string {
   width: 300px;
   height: 53px;
   background: #c3d0ed;

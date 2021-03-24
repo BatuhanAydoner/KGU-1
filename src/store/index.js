@@ -18,7 +18,7 @@ export default new Vuex.Store({
     LoginViewForgotPassword() {
       this.state.nowComponents = "forgot";
     },
-    toggleLoading() {
+    toggleLoggedIn() {
       this.state.isLoggedIn = !this.state.isLoggedIn;
     }
   },
@@ -32,8 +32,8 @@ export default new Vuex.Store({
     LoginViewForgotPassword(context) {
       context.commit("LoginViewForgotPassword");
     },
-    toggleLoading(context) {
-      context.commit("toggleLoading");
+    toggleLoggedIn(context) {
+      context.commit("toggleLoggedIn");
     }
   }
 });

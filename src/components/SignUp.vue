@@ -2,19 +2,48 @@
   <div class="text-center">
     <h2 class="mb-5 text-2xl">Hesap Oluştur</h2>
     <div>
-      <input v-model="newUser.firstname" type="text" placeholder="Isim" />
-      <br />
-      <input v-model="newUser.lastname" type="text" placeholder="Soyisim" />
-      <br />
-      <input v-model="newUser.email" type="email" placeholder="E-Posta" />
-      <br />
-      <input v-model="newUser.password" type="password" placeholder="Şifre" />
+      <div class="inline ">
+        <input
+          v-model="newUser.firstname"
+          type="text"
+          placeholder="Isim"
+          class="name stringInput"
+        />
+        <span class="nameSpan"></span>
+        <input
+          v-model="newUser.lastname"
+          type="text"
+          placeholder="Soyisim"
+          class="lastname stringInput"
+        />
+      </div>
       <br />
       <input
+        class="stringInput"
+        v-model="newUser.email"
+        type="email"
+        placeholder="E-Posta"
+      />
+      <br />
+      <input
+        class="stringInput"
+        v-model="newUser.password"
+        type="password"
+        placeholder="Şifre"
+      />
+      <br />
+      <input
+        class="stringInput"
         v-model="newUser.repassword"
         type="password"
         placeholder="Şifre Doğrula"
       />
+    </div>
+    <div class="flex mb-2 text-center mx-auto">
+      <label class="flex justify-center items-center">
+        <input v-model="isWantMentor" type="checkbox" class="form-checkbox" />
+        <span class="ml-2">Danışman Olmak İstiyorum</span>
+      </label>
     </div>
     <button v-if="!visible" class="login-button" @click="signupKGU">
       Hesap Oluştur
@@ -50,7 +79,8 @@ export default {
         password: "",
         repassword: ""
       },
-      visible: false
+      visible: false,
+      isWantMentor: false
     };
   },
   components: {
@@ -64,36 +94,62 @@ export default {
       let loader = this.$loading.show({
         loader: "dots"
       });
-
-      axios({
-        method: "POST",
-        url: "https://kguproject.herokuapp.com/api/users/signup",
-        headers: {
-          "Content-Type": "application/json; charset=utf-8"
-        },
-        data: {
-          ...this.newUser
-        }
-      }).then(res => {
-        loader.hide();
-        this.visible = false;
-        console.log(this.newUser);
-        console.log(res);
-        this.$router.push("/");
-      });
+      if (this.isWantMentor) {
+        axios({
+          method: "POST",
+          url: "https://kguproject.herokuapp.com/api/mentors/signup",
+          headers: {
+            "Content-Type": "application/json; charset=utf-8"
+          },
+          data: {
+            ...this.newUser
+          }
+        }).then(res => {
+          loader.hide();
+          this.visible = false;
+          console.log(this.newUser);
+          console.log(res);
+          this.$router.push("/");
+        });
+      } else if (!this.isWantMentor) {
+        axios({
+          method: "POST",
+          url: "https://kguproject.herokuapp.com/api/users/signup",
+          headers: {
+            "Content-Type": "application/json; charset=utf-8"
+          },
+          data: {
+            ...this.newUser
+          }
+        }).then(res => {
+          loader.hide();
+          this.visible = false;
+          console.log(this.newUser);
+          console.log(res);
+          this.$router.push("/");
+        });
+      }
     }
   }
 };
 </script>
 
-<style scoped>
-input {
+<style scoped lang="scss">
+.stringInput {
   width: 300px;
   height: 53px;
   background: #c3d0ed;
   border-radius: 12px;
   margin-bottom: 20px;
   padding-left: 20px;
+}
+.name,
+.lastname {
+  width: 145px !important;
+}
+.nameSpan {
+  width: 10px;
+  display: inline-block;
 }
 input:focus {
   outline: none;
