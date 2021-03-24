@@ -35,16 +35,33 @@
         />
       </v-app>
     </div>
-    <div v-else class="loggedHomePage">Giris yapildi Ana sayfa</div>
+    <div v-else class="loggedHomePage">
+      <div class="">
+        <p>Giris yapildi</p>
+        <button
+          class="text-white rounded px-3 py-2 m-1 border-b-4 border-l-2 shadow-lg bg-blue-700 border-blue-800"
+          @click="logOut"
+        >
+          exit
+        </button>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import Navbar from "@/components/Navbar";
+import { mapActions } from "vuex";
 export default {
   name: "Home",
   components: {
     Navbar
+  },
+  methods: {
+    ...mapActions(["toggleLogged"]),
+    logOut() {
+      this.toggleLogged();
+    }
   }
 };
 </script>

@@ -3,7 +3,7 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 import vuetify from "./plugins/vuetify";
-
+import VueLoading from "vue-loading-overlay";
 Vue.config.productionTip = false;
 
 new Vue({
@@ -12,3 +12,5 @@ new Vue({
   vuetify,
   render: h => h(App)
 }).$mount("#app");
+
+Vue.use(VueLoading);

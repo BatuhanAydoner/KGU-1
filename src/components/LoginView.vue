@@ -1,43 +1,65 @@
 <template>
-  <div class="text-center">
-    <h2 class="mb-5 text-2xl">Hoşgeldiniz</h2>
-    <div>
-      <input v-model="user.email" type="email" placeholder="E-Posta" /> <br />
-      <input v-model="user.password" type="password" placeholder="Şifre" />
+  <div>
+    <div class="loginMainView">
+      <div class="text-center">
+        <h2 class="mb-5 text-2xl">Hoşgeldiniz</h2>
+        <div>
+          <input v-model="user.email" type="email" placeholder="E-Posta" />
+          <br />
+          <input v-model="user.password" type="password" placeholder="Şifre" />
+        </div>
+        <button v-if="!visible" class="login-button" @click="signInKGU">
+          Giriş Yap
+        </button>
+        <div v-else class="w-100 mx-auto flex justify-center items-center">
+          <loading
+            loader="bars"
+            :active.sync="visible"
+            :can-cancel="true"
+          ></loading>
+        </div>
+        <a @click="LoginViewForgotPassword" class="mt-3 text-gray-500 ">
+          Şifremi Unuttum
+        </a>
+        <a @click="LoginViewSignUp" class="text-muted">
+          Hesabınız Yok mu? Kayıt Olun
+        </a>
+      </div>
     </div>
-    <button class="login-button" @click="signInKGU">Giriş Yap</button>
-    <a @click="LoginViewForgotPassword" class="mt-3 text-gray-500 ">
-      Şifremi Unuttum
-    </a>
-    <a @click="LoginViewSignUp" class="text-muted">
-      Hesabınız Yok mu? Kayıt Olun
-    </a>
   </div>
 </template>
 
 <script>
 import { mapActions } from "vuex";
 import axios from "axios";
+import Loading from "vue-loading-overlay";
 
 export default {
   name: "Login",
   data() {
     return {
       user: {
-        email: "",
-        password: ""
-      }
+        email: "fohidolyqi@mailinator.com",
+        password: "Pa$$w0rd!"
+      },
+      visible: false
     };
   },
+  components: {
+    Loading
+  },
+
   methods: {
     ...mapActions(["LoginViewSignUp", "LoginViewForgotPassword"]),
     signInKGU() {
+      this.visible = true;
+      let loader = this.$loading.show({
+        loader: "dots"
+      });
+
       axios({
         method: "POST",
         url: "https://kguproject.herokuapp.com/api/users/signin",
-        params: {
-          ...this.user
-        },
         headers: {
           "Content-Type": "application/json; charset=utf-8"
         },
@@ -45,8 +67,11 @@ export default {
           ...this.user
         }
       }).then(res => {
+        loader.hide();
+        this.visible = false;
         console.log(this.user);
         console.log(res);
+        this.$router.push("/");
       });
     }
   }

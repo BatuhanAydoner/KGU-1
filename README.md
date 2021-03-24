@@ -5,8 +5,8 @@ Açıklama Eklenecektir.
 ## To Do
 - [x] Create Login & SignUp Page
 - [x] Fix Back to Login Page bug & Change Animation of Login View's Components
-- [ ] Optimize All Images 
-
+- [x] Create Loading Bar For Login And SignUp Page
+- [ ] Authentication
 
 ## Project setup
 ```

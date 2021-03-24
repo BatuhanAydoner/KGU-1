@@ -16,15 +16,18 @@
         placeholder="Şifre Doğrula"
       />
     </div>
-    <button class="login-button" @click="signupKGU">Hesap Oluştur</button>
+    <button v-if="!visible" class="login-button" @click="signupKGU">
+      Hesap Oluştur
+    </button>
+    <div v-else class="w-100 mx-auto flex justify-center items-center">
+      <loading
+        loader="bars"
+        :active.sync="visible"
+        :can-cancel="true"
+      ></loading>
+    </div>
     <div class="mt-5">
-      <button
-        class="text-gray-500"
-        @click="
-          LoginViewLogin;
-          toggleLoading;
-        "
-      >
+      <button class="text-gray-500" @click="LoginViewLogin">
         ⬅ Hesabınız Var mı? Giriş Yapın
       </button>
     </div>
@@ -34,6 +37,7 @@
 <script>
 import { mapActions } from "vuex";
 import axios from "axios";
+import Loading from "vue-loading-overlay";
 
 export default {
   name: "SignUp",
@@ -45,18 +49,25 @@ export default {
         email: "",
         password: "",
         repassword: ""
-      }
+      },
+      visible: false
     };
   },
+  components: {
+    Loading
+  },
+
   methods: {
     ...mapActions(["LoginViewLogin"]),
     signupKGU() {
+      this.visible = true;
+      let loader = this.$loading.show({
+        loader: "dots"
+      });
+
       axios({
         method: "POST",
         url: "https://kguproject.herokuapp.com/api/users/signup",
-        params: {
-          ...this.newUser
-        },
         headers: {
           "Content-Type": "application/json; charset=utf-8"
         },
@@ -64,8 +75,11 @@ export default {
           ...this.newUser
         }
       }).then(res => {
+        loader.hide();
+        this.visible = false;
         console.log(this.newUser);
         console.log(res);
+        this.$router.push("/");
       });
     }
   }
