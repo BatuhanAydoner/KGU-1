@@ -94,41 +94,24 @@ export default {
       let loader = this.$loading.show({
         loader: "dots"
       });
-      if (this.isWantMentor) {
-        axios({
-          method: "POST",
-          url: "https://kguproject.herokuapp.com/api/mentors/signup",
-          headers: {
-            "Content-Type": "application/json; charset=utf-8"
-          },
-          data: {
-            ...this.newUser
-          }
-        }).then(res => {
-          loader.hide();
-          this.visible = false;
-          console.log(this.newUser);
-          console.log(res);
-          this.$router.push("/");
-        });
-      } else if (!this.isWantMentor) {
-        axios({
-          method: "POST",
-          url: "https://kguproject.herokuapp.com/api/users/signup",
-          headers: {
-            "Content-Type": "application/json; charset=utf-8"
-          },
-          data: {
-            ...this.newUser
-          }
-        }).then(res => {
-          loader.hide();
-          this.visible = false;
-          console.log(this.newUser);
-          console.log(res);
-          this.$router.push("/");
-        });
-      }
+      let whoIs = this.isWantMentor ? "mentors" : "users";
+
+      axios({
+        method: "POST",
+        url: `https://kguproject.herokuapp.com/api/${whoIs}/signup`,
+        headers: {
+          "Content-Type": "application/json; charset=utf-8"
+        },
+        data: {
+          ...this.newUser
+        }
+      }).then(res => {
+        loader.hide();
+        this.visible = false;
+        console.log(this.newUser);
+        console.log(res);
+        this.$router.push("/");
+      });
     }
   }
 };
