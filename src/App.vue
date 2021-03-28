@@ -1,15 +1,22 @@
 <template>
-  <v-app>
-    <div class="">
-      <router-view></router-view>
-    </div>
-  </v-app>
+  <div id="app">
+    <Navbar />
+
+    <router-view />
+  </div>
 </template>
 
 <script>
+import Navbar from "@/components/without_login_components/Navbar";
+
 export default {
-  name: "App"
+  components: {
+    Navbar,
+  },
 };
 </script>
-
-<style scoped></style>
+<style>
+body {
+  background-color: #f0f3fe;
+}
+</style>
