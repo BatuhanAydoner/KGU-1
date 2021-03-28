@@ -6,11 +6,7 @@
       <a
         class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0"
       >
-        <img
-          src="https://www.kgu.0x778.me/img/Logo.ed60e589.png"
-          class="w-24"
-          alt=""
-        />
+        <img src="../../assets/Logo.png" class="w-24" alt="" />
       </a>
       <nav
         class="md:ml-auto block md:flex md:flex-wrap md:items-center text-base md:justify-center"
@@ -19,11 +15,6 @@
           to="/"
           class="md:mr-5 hover:text-gray-900 block mx-auto text-center"
           >Ana Sayfa</router-link
-        >
-        <a
-          href="#nasil-kullanilir"
-          class="md:mr-5 hover:text-gray-900 block mx-auto text-center"
-          >Nasıl Kullanılır?</a
         >
 
         <router-link

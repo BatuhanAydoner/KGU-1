@@ -3,10 +3,11 @@
     <!--  Header Section   -->
     <section class="text-gray-600 body-font">
       <div
-        class="container mx-auto flex px-5 py-8 md:py-24 md:flex-row flex-col items-center"
+        class="container mx-auto flex px-5 py-8 md:py-24 lg:flex-row flex-col items-center"
       >
+        <!--   Header Description     -->
         <div
-          class="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center"
+          class="lg:flex-grow lg:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center"
         >
           <h1
             class="title-font sm:text-3xl text-2xl mb-4 font-medium text-gray-900"
@@ -83,9 +84,10 @@
             </button>
           </div>
         </div>
+        <!--   Header Image     -->
         <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 md:-mt-7">
           <img
-            class="object-cover object-center rounded hidden md:block"
+            class="object-cover object-center rounded hidden lg:block"
             alt="hero"
             src="https://i.ibb.co/Njj4qKz/saly.png"
           />
