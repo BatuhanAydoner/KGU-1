@@ -22,16 +22,16 @@
 
       <input
         type="text"
-        class="w-full py-3 pl-10 pr-4 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-blue-500 focus:outline-none focus:ring"
-        placeholder="Search"
+        class="w-full py-2 rounded-full pl-10 pr-4 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-blue-500 focus:outline-none focus:ring"
+        placeholder="Danışman Ara"
       />
     </div>
 
     <div class="flex flex-col justify-between flex-1 mt-6">
       <nav>
-        <a
-          class="flex items-center px-4 py-2 text-gray-700 bg-gray-200 rounded-md"
-          href="#"
+        <button
+          class="flex w-full items-center px-4 py-2 text-gray-700 bg-gray-200 rounded-md"
+          @click="changeTab('mentors')"
         >
           <svg
             class="w-5 h-5"
@@ -49,29 +49,29 @@
           </svg>
 
           <span class="mx-4 font-medium">Danışman Keşfet</span>
-        </a>
+        </button>
 
-        <a
-          class="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-200 transform rounded-md hover:bg-gray-200 hover:text-gray-700"
-          href="#"
+        <button
+          class="flex w-full items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-200 transform rounded-md hover:bg-gray-200 hover:text-gray-700"
+          @click="changeTab('meetings')"
         >
           <ion-icon name="calendar-number-outline" size="small"></ion-icon>
 
           <span class="mx-4 font-medium">Randevularım</span>
-        </a>
+        </button>
 
-        <a
-          class="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-200 transform rounded-md hover:bg-gray-200 hover:text-gray-700"
-          href="#"
+        <button
+          class="flex w-full items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-200 transform rounded-md hover:bg-gray-200 hover:text-gray-700"
+          @click="changeTab('credit')"
         >
           <ion-icon name="logo-paypal"></ion-icon>
 
           <span class="mx-4 font-medium">Kredi Satın Al</span>
-        </a>
+        </button>
 
-        <a
-          class="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-200 transform rounded-md hover:bg-gray-200 hover:text-gray-700"
-          href="#"
+        <button
+          class="flex w-full items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-200 transform rounded-md hover:bg-gray-200 hover:text-gray-700"
+          @click="changeTab('settings')"
         >
           <svg
             class="w-5 h-5"
@@ -96,7 +96,7 @@
           </svg>
 
           <span class="mx-4 font-medium">Ayarlar</span>
-        </a>
+        </button>
 
         <hr class="my-6" />
 
@@ -137,20 +137,10 @@ export default {
       localStorage.removeItem("token");
       location.reload();
     },
+    changeTab(tab) {
+      this.$store.state.nowTab = tab;
+    },
   },
-  // beforeCreate() {
-  //   let whoIs = localStorage.get("whoIs");
-  //   axios
-  //     .get(`https://kguproject.herokuapp.com/api/${whoIs}/`)
-  //     .then(function (response) {
-  //       // handle success
-  //       console.log(response);
-  //     })
-  //     .catch(function (error) {
-  //       // handle error
-  //       console.log(error);
-  //     });
-  // },
 };
 </script>
 
