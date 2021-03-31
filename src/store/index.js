@@ -8,6 +8,7 @@ export default new Vuex.Store({
     isLogged: false,
     error: false,
     isHaveToken: false,
+    nowTab: "mentors",
   },
   mutations: {},
   actions: {},

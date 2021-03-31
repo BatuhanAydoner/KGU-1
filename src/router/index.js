@@ -2,6 +2,8 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/without_login/Home.vue";
 import HomeLogged from "../views/Home";
+import Login from "../views/without_login/Login";
+import SignUp from "../views/without_login/SignUp";
 
 Vue.use(VueRouter);
 
@@ -24,18 +26,32 @@ const routes = [
   {
     path: "/giris-yap",
     name: "Login",
-    component: () =>
-      import(
-        /* webpackChunkName: "about" */ "../views/without_login/Login.vue"
-      ),
+    component: {
+      render(c) {
+        this.$store.state.isHaveToken =
+          localStorage.getItem("token") === null ? false : true;
+        if (this.$store.state.isHaveToken === false) {
+          return c(Login);
+        } else {
+          this.$router.push("/");
+        }
+      },
+    },
   },
   {
     path: "/kayit-ol",
     name: "SignUp",
-    component: () =>
-      import(
-        /* webpackChunkName: "about" */ "../views/without_login/SignUp.vue"
-      ),
+    component: {
+      render(c) {
+        this.$store.state.isHaveToken =
+          localStorage.getItem("token") === null ? false : true;
+        if (this.$store.state.isHaveToken === false) {
+          return c(SignUp);
+        } else {
+          this.$router.push("/");
+        }
+      },
+    },
   },
 ];
 

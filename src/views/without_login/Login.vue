@@ -196,6 +196,9 @@ export default {
           console.log(this.user);
           console.log(res);
           localStorage.setItem("token", res.data.token);
+          localStorage.setItem("email", this.user.email);
+          localStorage.setItem("whoIs", whoIs);
+
           this.$router.push("/");
           this.$store.state.isLogged = true;
         })
