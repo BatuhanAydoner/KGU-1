@@ -3,11 +3,12 @@
     <div
       class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center"
     >
-      <a
+      <router-link
+        to="/"
         class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0"
       >
         <img src="../../assets/Logo.png" class="w-24" alt="" />
-      </a>
+      </router-link>
       <nav
         class="md:ml-auto block md:flex md:flex-wrap md:items-center text-base md:justify-center"
       >

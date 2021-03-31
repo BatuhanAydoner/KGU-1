@@ -1,7 +1,13 @@
 <template>
   <div v-if="!forgetPassword">
+    <transition name="fade">
+      <ErrorAlert
+        v-if="isError"
+        class="mx-auto mb-4 lg:absolute lg:top-5 lg:right-5"
+      />
+    </transition>
     <div
-      class="flex max-w-sm mx-auto overflow-hidden bg-white rounded-xl shadow-lg dark:bg-gray-800 lg:max-w-4xl md:mt-24"
+      class="flex max-w-sm mx-auto overflow-hidden bg-white rounded-xl shadow-lg lg:max-w-4xl md:mt-24"
     >
       <!--    https://elements.envato.com/welcome-screen-girl-GU84WWU -->
       <div
@@ -19,35 +25,33 @@
           alt=""
         />
 
-        <p class="text-xl text-center text-gray-600 dark:text-gray-200">
-          Hoşgeldiniz
-        </p>
+        <p class="text-xl text-center text-gray-600">Hoşgeldiniz</p>
 
         <div class="mt-4">
           <label
-            class="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200"
+            class="block mb-2 text-sm font-medium text-gray-600"
             for="LoggingEmailAddress"
             >Email Adresiniz</label
           >
           <input
             v-model="user.email"
             id="LoggingEmailAddress"
-            class="block w-full px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
+            class="block w-full px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-blue-500 focus:outline-none focus:ring"
             type="email"
+            placeholder="Email"
           />
         </div>
 
         <div class="mt-4">
           <div class="flex justify-between">
             <label
-              class="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200"
+              class="block mb-2 text-sm font-medium text-gray-600"
               for="loggingPassword"
-              >Şifreniz</label
-            >
+              >Şifreniz
+            </label>
             <span
-              href="#"
               v-on:click="toggleForgetPasswordView"
-              class="text-xs text-gray-500 dark:text-gray-300 hover:underline"
+              class="text-xs text-gray-500 hover:underline"
               >Şifrenizi mi unuttunuz?</span
             >
           </div>
@@ -55,8 +59,9 @@
           <input
             v-model="user.password"
             id="loggingPassword"
-            class="block w-full px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
+            class="block w-full px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-blue-500 focus:outline-none focus:ring"
             type="password"
+            placeholder="Şifre"
           />
         </div>
         <label class="flex items-center space-x-3 mt-4">
@@ -72,25 +77,34 @@
         </label>
         <div class="mt-4">
           <button
+            v-if="!isLoading"
             @click="login"
             class="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-gradient-to-r from-indigo-500 to-purple-400 rounded focus:outline-none focus:bg-gray-600"
           >
             Giriş Yap
           </button>
+
+          <orbit-spinner
+            v-else
+            :animation-duration="1200"
+            :size="40"
+            color="#ff1d5e"
+            class="mx-auto"
+          />
         </div>
 
         <div class="flex items-center justify-between mt-4">
-          <span class="w-1/4 border-b dark:border-gray-600 md:w-1/4"></span>
+          <span class="w-1/4 border-b md:w-1/4"></span>
 
           <router-link
             to="/kayit-ol"
-            class="text-xs text-gray-500 uppercase dark:text-gray-400 hover:underline text-center"
+            class="text-xs text-gray-500 uppercase hover:underline text-center"
           >
             Hesabınız Yok Mu? <br />
             Kayıt Olun
           </router-link>
 
-          <span class="w-1/5 border-b dark:border-gray-600 md:w-1/4"></span>
+          <span class="w-1/5 border-b md:w-1/4"></span>
         </div>
       </div>
     </div>
@@ -101,12 +115,12 @@
     v-else
     class="flex justify-center max-w-sm mx-auto overflow-hidden bg-white rounded-xl shadow-lg lg:max-w-4xl md:mt-28"
   >
-    <section class="bg-white dark:bg-gray-800">
+    <section class="bg-white">
       <div class="max-w-3xl px-4 py-16 mx-auto text-center">
-        <h1 class="text-3xl font-semibold text-gray-800 dark:text-gray-100">
+        <h1 class="text-3xl font-semibold text-gray-800">
           Şifrenizi Mi Unuttunuz?
         </h1>
-        <p class="max-w-md mx-auto mt-4 text-gray-500 dark:text-gray-400">
+        <p class="max-w-md mx-auto mt-4 text-gray-500">
           Şifrenizi sıfırlamak için aşağıya email adresinizi girin ve gelen
           emailde şifrenizi nasıl sıfırlayabileceğiniz anlatılmaktadır.
         </p>
@@ -117,7 +131,7 @@
           <input
             id="email"
             type="email"
-            class="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
+            class="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-blue-500 focus:outline-none focus:ring"
             placeholder="Email Adresiniz"
           />
 
@@ -137,6 +151,8 @@
 
 <script>
 import axios from "axios";
+import { OrbitSpinner } from "epic-spinners";
+import ErrorAlert from "../../components/without_login_components/ErrorAlert";
 export default {
   name: "Login",
   data() {
@@ -145,13 +161,26 @@ export default {
         email: "",
         password: "",
       },
-      isMentor: false,
       forgetPassword: false,
+      isMentor: false,
+      isLoading: false,
+      isError: false,
     };
   },
 
   methods: {
+    toggleForgetPasswordView() {
+      this.forgetPassword = !this.forgetPassword;
+    },
+    toggleIsLoading() {
+      this.isLoading = !this.isLoading;
+    },
+    toggleIsError() {
+      this.isError = true;
+    },
     login() {
+      this.toggleIsLoading();
+      this.isError = false;
       let whoIs = this.isMentor ? "mentors" : "users";
       axios({
         method: "POST",
@@ -162,22 +191,37 @@ export default {
         data: {
           ...this.user,
         },
-      }).then((res) => {
-        this.visible = false;
-        console.log(this.user);
-        console.log(res);
-        this.$router.push("/");
-      });
+      })
+        .then((res) => {
+          console.log(this.user);
+          console.log(res);
+          localStorage.setItem("token", res.data.token);
+          this.$router.push("/");
+          this.$store.state.isLogged = true;
+        })
+        .catch((error) => {
+          if (error.response) {
+            console.log(error.response.data);
+            this.toggleIsError();
+            this.toggleIsLoading();
+          }
+        });
     },
-    toggleForgetPasswordView() {
-      this.forgetPassword = !this.forgetPassword;
-    },
+  },
+  components: {
+    OrbitSpinner,
+    ErrorAlert,
   },
 };
 </script>
 
 <style scoped>
-.login-height {
-  height: 50vh;
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
