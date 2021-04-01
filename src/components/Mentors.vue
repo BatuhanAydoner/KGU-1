@@ -74,14 +74,17 @@ export default {
       allMentorsList: mentors,
     };
   },
-  beforeMount() {
+  beforeCreate() {
+    console.log("before create");
     axios
       .get("https://kguproject.herokuapp.com/api/mentors/all-mentors")
       .then(function (response) {
         let allMentors = response.data.mentors;
-        allMentors.forEach((element) => {
-          mentors.push(element);
-        });
+        if (mentors == "") {
+          allMentors.forEach((element) => {
+            mentors.push(element);
+          });
+        }
         console.log(mentors);
       })
       .catch(function (error) {
