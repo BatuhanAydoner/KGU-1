@@ -30,7 +30,8 @@
     <div class="flex flex-col justify-between flex-1 mt-6">
       <nav>
         <button
-          class="flex w-full items-center px-4 py-2 text-gray-700 bg-gray-200 rounded-md"
+          class="flex w-full items-center px-4 py-2 focus:outline-none text-gray-700 rounded-md"
+          :class="{ 'bg-gray-200': this.$store.state.nowTab == 'mentors' }"
           @click="changeTab('mentors')"
         >
           <svg
@@ -48,11 +49,12 @@
             />
           </svg>
 
-          <span class="mx-4 font-medium">Danışman Keşfet</span>
+          <span class="mx-4 font-medium">Danışmanlar</span>
         </button>
 
         <button
-          class="flex w-full items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-200 transform rounded-md hover:bg-gray-200 hover:text-gray-700"
+          class="flex w-full items-center px-4 py-2 mt-5 text-gray-600 focus:outline-none transition-colors duration-200 transform rounded-md hover:bg-gray-200 hover:text-gray-700"
+          :class="{ 'bg-gray-200': this.$store.state.nowTab == 'meetings' }"
           @click="changeTab('meetings')"
         >
           <ion-icon name="calendar-number-outline" size="small"></ion-icon>
@@ -61,7 +63,7 @@
         </button>
 
         <button
-          class="flex w-full items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-200 transform rounded-md hover:bg-gray-200 hover:text-gray-700"
+          class="flex w-full items-center px-4 py-2 mt-5 text-gray-600 transition-colors focus:outline-none duration-200 transform rounded-md hover:bg-gray-200 hover:text-gray-700"
           @click="changeTab('credit')"
         >
           <ion-icon name="logo-paypal"></ion-icon>
@@ -70,7 +72,8 @@
         </button>
 
         <button
-          class="flex w-full items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-200 transform rounded-md hover:bg-gray-200 hover:text-gray-700"
+          class="flex w-full items-center px-4 py-2 mt-5 text-gray-600 transition-colors focus:outline-none duration-200 transform rounded-md hover:bg-gray-200 hover:text-gray-700"
+          :class="{ 'bg-gray-200': this.$store.state.nowTab == 'settings' }"
           @click="changeTab('settings')"
         >
           <svg

@@ -1,7 +1,7 @@
 <template>
   <div class="flex">
-    <NavBarLogged />
-    <div>
+    <NavBarLogged class="sticky top-0" />
+    <div class="w-full">
       <Mentors v-if="this.$store.state.nowTab === 'mentors'" />
       <Meeting v-if="this.$store.state.nowTab === 'meetings'" />
       <Credit v-if="this.$store.state.nowTab === 'credit'" />
