@@ -9,12 +9,12 @@
         <div class="lg:w-4/5 mx-auto flex flex-wrap">
           <img
             alt="ecommerce"
-            class="lg:w-1/2 img-h w-full object-cover object-center rounded"
-            src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80"
+            class="lg:w-5/12 h-auto object-cover object-center rounded"
+            src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80"
           />
           <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
             <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">
-              {{ this.mentor.firstname + " " + this.mentor.lastname }}
+              {{ this.mentorInfo.firstname + " " + this.mentorInfo.lastname }}
             </h1>
             <div class="flex mb-4">
               <span class="flex items-center">
@@ -91,12 +91,12 @@
               </span>
             </div>
             <p class="leading-relaxed pb-5">
-              {{ this.mentor.mentor_about }}
+              {{ this.mentorInfo.mentor_about }}
             </p>
 
             <div class="flex pb-5">
               <span class="title-font font-medium text-2xl text-gray-900"
-                >₺{{ this.mentor.hour_price }}</span
+                >₺{{ this.mentorInfo.hour_price }}</span
               >
               <button
                 class="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded"
@@ -114,23 +114,25 @@
 <script>
 import axios from "axios";
 
-var mentorInfos = [];
+let mentor = [];
 export default {
   name: "MentorView",
   data() {
     return {
-      mentorID: 0,
-      mentor: mentorInfos,
+      mentorID: this.$route.params.mentorID,
+      mentorInfo: [],
     };
   },
-  beforeMount() {
+  beforeCreate() {
+    let mentorId = this.$route.params.mentorID;
+    let self = this;
     axios
-      .get(
-        `https://kguproject.herokuapp.com/api/mentors/${this.$route.params.mentorID}`
-      )
+      .get(`https://kguproject.herokuapp.com/api/mentors/${mentorId}`)
       .then(function (response) {
         console.log(response.data.mentor);
-        mentorInfos = response.data.mentor;
+        mentor = response.data.mentor;
+        console.log(mentor);
+        self.mentorInfo = mentor;
       })
       .catch(function (error) {
         console.log(error);
