@@ -107,11 +107,7 @@
           class="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-200 transform rounded-md hover:bg-gray-200 hover:text-gray-700 cursor-pointer"
           @click="logout"
         >
-          <img
-            class="w-5"
-            src="https://www.flaticon.com/svg/vstatic/svg/992/992680.svg?token=exp=1617196480~hmac=f4e01d20e918990797b08c45c1d0bb90"
-            alt=""
-          />
+          <ion-icon name="exit-outline" class="exit-logo"></ion-icon>
 
           <span class="mx-4 font-medium">Çıkış Yap</span>
         </div>
@@ -119,22 +115,37 @@
 
       <div class="flex items-center px-4 -mx-2">
         <img
-          class="object-cover mx-2 rounded-full h-9 w-9"
+          class="object-cover mx-2 rounded-full h-12 w-12"
           src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80"
           alt="avatar"
         />
-        <h4 class="mx-2 font-medium text-gray-800 hover:underline">
-          Kadir Ince
-        </h4>
+        <div>
+          <h4 class="mx-2 font-medium text-gray-800 hover:underline">
+            {{ name }}
+          </h4>
+          <p class="mx-2 font-medium text-sm text-gray-400 hover:underline">
+            Kredi: {{ credit }}
+          </p>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-// import axios from "axios";
+let user = "";
+import axios from "axios";
+
 export default {
   name: "NavBarLogged",
+  data() {
+    return {
+      whoIs: [],
+      userID: 0,
+      name: "",
+      credit: 0,
+    };
+  },
   methods: {
     logout() {
       localStorage.removeItem("token");
@@ -144,7 +155,41 @@ export default {
       this.$store.state.nowTab = tab;
     },
   },
+  beforeCreate() {
+    let token = localStorage.getItem("token");
+    let userType = localStorage.getItem("whoIs");
+    this.whoIs = parseJwt(token);
+    this.userID = this.whoIs.id;
+
+    axios
+      .get(`https://kguproject.herokuapp.com/api/${userType}/${this.userID}`)
+      .then((response) => {
+        user = response.data.user;
+        console.log(user);
+        this.name = user.firstname + " " + user.lastname;
+        this.credit = user.current_jeton;
+        localStorage.setItem("userId", user._id);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  },
 };
+
+function parseJwt(token) {
+  var base64Url = token.split(".")[1];
+  var base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+  var jsonPayload = decodeURIComponent(
+    atob(base64)
+      .split("")
+      .map(function (c) {
+        return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+      })
+      .join("")
+  );
+
+  return JSON.parse(jsonPayload);
+}
 </script>
 
 <style lang="scss" scoped>
@@ -159,5 +204,9 @@ header {
   background: linear-gradient(287.18deg, #fe5762 13.07%, #ff6ba1 110.81%);
   &:hover {
   }
+}
+
+.exit-logo {
+  font-size: 22px;
 }
 </style>

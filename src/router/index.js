@@ -4,6 +4,7 @@ import Home from "../views/without_login/Home.vue";
 import HomeLogged from "../views/Home";
 import Login from "../views/without_login/Login";
 import SignUp from "../views/without_login/SignUp";
+import MentorView from "../views/MentorView";
 
 Vue.use(VueRouter);
 
@@ -13,8 +14,7 @@ const routes = [
     name: "Home",
     component: {
       render(c) {
-        this.$store.state.isHaveToken =
-          localStorage.getItem("token") === null ? false : true;
+        this.$store.state.isHaveToken = localStorage.getItem("token") !== null;
         if (this.$store.state.isHaveToken === false) {
           return c(Home);
         } else {
@@ -49,6 +49,19 @@ const routes = [
           return c(SignUp);
         } else {
           this.$router.push("/");
+        }
+      },
+    },
+  },
+  {
+    path: "/mentor/:mentorID",
+    name: "MentorView",
+    component: {
+      render(c) {
+        if (this.$store.state.isHaveToken === true) {
+          return c(MentorView);
+        } else {
+          return c(Home);
         }
       },
     },

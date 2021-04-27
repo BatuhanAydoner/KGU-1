@@ -16,6 +16,7 @@ import Mentors from "../components/Mentors";
 import Meeting from "../components/Meeting";
 import Credit from "../components/Credit";
 import Settings from "../components/Settings";
+
 export default {
   name: "Home",
   data() {
