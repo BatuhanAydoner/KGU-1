@@ -10,7 +10,6 @@ export default new Vuex.Store({
     isHaveToken: false,
     nowTab: "mentors",
     allMentors: {},
-    mentorInfo: [],
   },
   mutations: {},
   actions: {},
