@@ -70,23 +70,30 @@
 let mentors = [];
 import axios from "axios";
 export default {
-  name: "Mentors",
+  name: "SearchUser",
   data() {
     return {
       allMentorsList: mentors,
     };
   },
   methods: {
-    mentorProfile(event) {
-      let mentorID = event.currentTarget.id;
-      this.$router.push({ name: "MentorView", params: { mentorID } });
-    },
+    search() {
+
+    }
   },
   beforeCreate() {
-    console.log("before create");
-    axios
-      .get("https://kguproject.herokuapp.com/api/mentors/all-mentors")
-      .then(function (response) {
+    console.log("butona tiklandi");
+    let searchMentorKey = this.$store.state.searchMentorKey;
+    axios({
+      method: "POST",
+      url: "https://kguproject.herokuapp.com/api/mentors/search-mentors",
+
+      data: {
+        key: searchMentorKey,
+      },
+    })
+      .then((response) => {
+        console.log(response);
         let allMentors = response.data.mentors;
         if (mentors == "") {
           allMentors.forEach((element) => {
@@ -94,11 +101,12 @@ export default {
           });
         }
         console.log(mentors);
+        this.$store.state.searchMentorKey = "";
       })
-      .catch(function (error) {
-        // handle error
+      .catch((error) => {
         console.log(error);
       });
+
   },
 };
 </script>

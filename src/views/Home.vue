@@ -6,6 +6,7 @@
       <Meeting v-if="this.$store.state.nowTab === 'meetings'" />
       <Credit v-if="this.$store.state.nowTab === 'credit'" />
       <Settings v-if="this.$store.state.nowTab === 'settings'" />
+      <SearchUser v-if="this.$store.state.nowTab === 'searchMentor'" />
     </div>
   </div>
 </template>
@@ -16,6 +17,7 @@ import Mentors from "../components/Mentors";
 import Meeting from "../components/Meeting";
 import Credit from "../components/Credit";
 import Settings from "../components/Settings";
+import SearchUser from "../components/SearchMentor";
 
 export default {
   name: "Home",
@@ -28,6 +30,7 @@ export default {
     Meeting,
     Credit,
     Settings,
+    SearchUser,
   },
 };
 </script>
