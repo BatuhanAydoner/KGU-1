@@ -137,6 +137,7 @@
 
 <script>
 let user = "";
+let mentor = "";
 import axios from "axios";
 
 export default {
@@ -152,7 +153,7 @@ export default {
   },
   methods: {
     logout() {
-      localStorage.removeItem("token");
+      localStorage.clear();
       location.reload();
     },
     changeTab(tab) {
@@ -166,40 +167,52 @@ export default {
     },
   },
   beforeCreate() {
-    let token = localStorage.getItem("token");
     let userType = localStorage.getItem("whoIs");
-    this.whoIs = parseJwt(token);
-    this.userID = this.whoIs.id;
+    let userID = localStorage.getItem("userId");
+    let mentorID = localStorage.getItem("mentorId");
 
-    axios
-      .get(`https://kguproject.herokuapp.com/api/${userType}/${this.userID}`)
-      .then((response) => {
-        user = response.data.user;
-        console.log(user);
-        this.name = user.firstname + " " + user.lastname;
-        this.credit = user.current_jeton;
-        localStorage.setItem("userId", user._id);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    if (mentorID != undefined) {
+      axios
+        .get(`https://kguproject.herokuapp.com/api/${userType}/${mentorID}`)
+        .then((response) => {
+          console.log("basarili");
+          if (userType == "users") {
+            user = response.data.user;
+            console.log(user);
+            this.name = user.firstname + " " + user.lastname;
+          } else if (userType == "mentors") {
+            mentor = response.data.mentor;
+            console.log(mentor);
+            this.name = mentor.firstname + " " + mentor.lastname;
+          }
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    } else if (userID != undefined) {
+      axios
+        .get(`https://kguproject.herokuapp.com/api/${userType}/${userID}`)
+        .then((response) => {
+          console.log("basarili");
+          if (userType == "users") {
+            user = response.data.user;
+            console.log(user);
+            this.name = user.firstname + " " + user.lastname;
+          } else if (userType == "mentors") {
+            mentor = response.data.mentor;
+            console.log(mentor);
+            this.name = mentor.firstname + " " + mentor.lastname;
+          }
+
+          localStorage.setItem("userId", user._id);
+          console.log(user._id);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    }
   },
 };
-
-function parseJwt(token) {
-  var base64Url = token.split(".")[1];
-  var base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
-  var jsonPayload = decodeURIComponent(
-    atob(base64)
-      .split("")
-      .map(function (c) {
-        return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
-      })
-      .join("")
-  );
-
-  return JSON.parse(jsonPayload);
-}
 </script>
 
 <style lang="scss" scoped>

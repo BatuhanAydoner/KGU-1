@@ -3,7 +3,7 @@
     <p class="text-4xl text-center mb-8">Ayarlar</p>
     <div class="mx-auto w-64">
       <div class="relative">
-        <label for="name-with-label" class="text-gray-700"> İsim </label>
+        <label class="text-gray-700"> İsim </label>
         <input
           type="text"
           class="rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
@@ -14,7 +14,7 @@
       </div>
 
       <div class="relative mt-8">
-        <label for="name-with-label" class="text-gray-700"> Soyisim </label>
+        <label class="text-gray-700"> Soyisim </label>
         <input
           type="text"
           class="rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
@@ -24,7 +24,7 @@
         />
       </div>
       <div class="relative mt-8">
-        <label for="name-with-label" class="text-gray-700"> Email </label>
+        <label class="text-gray-700"> Email </label>
         <input
           type="text"
           class="rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
@@ -34,13 +34,51 @@
         />
       </div>
       <div class="relative mt-8 mb-8">
-        <label for="name-with-label" class="text-gray-700"> Şifre </label>
+        <label class="text-gray-700"> Şifre </label>
         <input
           type="password"
           v-model="password"
           class="rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
           placeholder="Şifre"
         />
+      </div>
+      <div v-if="this.$store.state.userType == 'mentors'" class="mb-8">
+        <label class="text-gray-700">
+          Danışman Açıklaması
+          <textarea
+            class="flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+            id="comment"
+            v-model="mentor_about"
+            placeholder="Hakkınızda"
+            rows="5"
+            cols="40"
+          >
+          </textarea>
+        </label>
+
+        <div>
+          <label for="price" class="block text-sm font-medium text-gray-700">
+            Saatlik Ücret
+          </label>
+          <div class="mt-1 relative rounded-md shadow-sm">
+            <div
+              class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
+            >
+              <span class="text-gray-500 sm:text-sm"> ₺ </span>
+            </div>
+            <input
+              type="number"
+              name="price"
+              id="hour_price"
+              class="focus:ring-indigo-500 border-l border-b border-t border-gray-300 py-2 px-4 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm rounded-md"
+              placeholder="0.00"
+              v-model="hour_price"
+            />
+            <div class="absolute inset-y-0 right-0 flex items-center">
+              <label class="sr-only"> Saatlik Ücret </label>
+            </div>
+          </div>
+        </div>
       </div>
 
       <button
@@ -64,26 +102,60 @@ export default {
       lastName: "",
       email: "",
       password: "",
+      userType: "",
+      mentor_about: "",
+      hour_price: 0,
     };
   },
   methods: {
     updateInfos() {
       let self = this;
       let userId = localStorage.getItem("userId");
-      axios
-        .patch(`https://kguproject.herokuapp.com/api/users/update/${userId}`, {
-          firstname: self.firstName,
-          lastname: self.lastName,
-          email: self.email,
-          password: self.password,
-        })
-        .then(function (response) {
-          console.log(response);
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
+      let mentorID = localStorage.getItem("mentorId");
+      if (mentorID != undefined) {
+        axios
+          .patch(
+            `https://kguproject.herokuapp.com/api/mentors/update/${mentorID}`,
+            {
+              firstname: self.firstName,
+              lastname: self.lastName,
+              email: self.email,
+              password: self.password,
+              mentor_about: self.mentor_about,
+              hour_price: self.hour_price,
+            }
+          )
+          .then(function (response) {
+            console.log(response);
+            location.reload();
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+      } else if (userId != undefined) {
+        axios
+          .patch(
+            `https://kguproject.herokuapp.com/api/users/update/${userId}`,
+            {
+              firstname: self.firstName,
+              lastname: self.lastName,
+              email: self.email,
+              password: self.password,
+            }
+          )
+          .then(function (response) {
+            console.log(response);
+            location.reload();
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+      }
     },
+  },
+  beforeCreate() {
+    let userType = localStorage.getItem("whoIs");
+    this.$store.state.userType = userType;
   },
 };
 </script>

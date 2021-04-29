@@ -150,7 +150,6 @@
 </template>
 
 <script>
-
 import axios from "axios";
 import { OrbitSpinner } from "epic-spinners";
 import ErrorAlert from "../../components/without_login_components/ErrorAlert";
@@ -199,6 +198,10 @@ export default {
           localStorage.setItem("token", res.data.token);
           localStorage.setItem("email", this.user.email);
           localStorage.setItem("whoIs", whoIs);
+          let parsedToken = parseJwt(res.data.token);
+          console.log("parsed ", parsedToken);
+          let userIdToLStorage = parsedToken.id;
+          localStorage.setItem("mentorId", userIdToLStorage);
 
           this.$router.push("/");
           this.$store.state.isLogged = true;
@@ -217,6 +220,20 @@ export default {
     ErrorAlert,
   },
 };
+function parseJwt(token) {
+  var base64Url = token.split(".")[1];
+  var base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+  var jsonPayload = decodeURIComponent(
+    atob(base64)
+      .split("")
+      .map(function (c) {
+        return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+      })
+      .join("")
+  );
+
+  return JSON.parse(jsonPayload);
+}
 </script>
 
 <style scoped>
