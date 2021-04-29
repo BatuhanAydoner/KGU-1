@@ -33,6 +33,7 @@
     <div class="flex flex-col justify-between flex-1 mt-6">
       <nav>
         <button
+          v-if="this.$store.state.userType =='users'"
           class="flex w-full items-center px-4 py-2 focus:outline-none text-gray-700 rounded-md"
           :class="{ 'bg-gray-200': this.$store.state.nowTab == 'mentors' }"
           @click="changeTab('mentors')"
@@ -66,6 +67,7 @@
         </button>
 
         <button
+          v-if="this.$store.state.userType == 'users'"
           class="flex w-full items-center px-4 py-2 mt-5 text-gray-600 transition-colors focus:outline-none duration-200 transform rounded-md hover:bg-gray-200 hover:text-gray-700"
           @click="changeTab('credit')"
         >
@@ -126,7 +128,10 @@
           <h4 class="mx-2 font-medium text-gray-800 hover:underline">
             {{ name }}
           </h4>
-          <p class="mx-2 font-medium text-sm text-gray-400 hover:underline">
+          <p
+            v-if="this.$store.state.userType == 'users'"
+            class="mx-2 font-medium text-sm text-gray-400 hover:underline"
+          >
             Kredi: {{ credit }}
           </p>
         </div>

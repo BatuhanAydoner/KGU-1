@@ -2,9 +2,19 @@
   <div class="flex">
     <NavBarLogged class="sticky top-0" />
     <div class="w-full">
-      <Mentors v-if="this.$store.state.nowTab === 'mentors'" />
+      <Mentors
+        v-if="
+          this.$store.state.nowTab === 'mentors' &&
+          this.$store.state.userType == 'users'
+        "
+      />
       <Meeting v-if="this.$store.state.nowTab === 'meetings'" />
-      <Credit v-if="this.$store.state.nowTab === 'credit'" />
+      <Credit
+        v-if="
+          this.$store.state.nowTab === 'credit' &&
+          this.$store.state.userType == 'users'
+        "
+      />
       <Settings v-if="this.$store.state.nowTab === 'settings'" />
       <SearchUser v-if="this.$store.state.nowTab === 'searchMentor'" />
     </div>
@@ -23,6 +33,12 @@ export default {
   name: "Home",
   data() {
     return {};
+  },
+  beforeCreate() {
+    let whoIs = localStorage.getItem("whoIs");
+    if (whoIs == "mentors") {
+      this.$store.state.nowTab = "meetings";
+    }
   },
   components: {
     NavBarLogged,

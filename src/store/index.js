@@ -9,7 +9,7 @@ export default new Vuex.Store({
     error: false,
     userType: "",
     isHaveToken: false,
-    nowTab: "mentors",
+    nowTab: 'mentors',
     allMentors: {},
     searchMentorKey: "",
   },
