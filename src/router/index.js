@@ -58,11 +58,7 @@ const routes = [
     name: "MentorView",
     component: {
       render(c) {
-        if (this.$store.state.isHaveToken === true) {
-          return c(MentorView);
-        } else {
-          return c(Home);
-        }
+        return c(MentorView);
       },
     },
   },

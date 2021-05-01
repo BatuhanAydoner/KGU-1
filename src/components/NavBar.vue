@@ -7,7 +7,7 @@
       <img src="../assets/Logo.png" class="w-28" alt="" />
     </router-link>
 
-    <div class="relative mt-6">
+    <div class="relative mt-6" v-if="this.$store.state.userType =='users'">
       <button @click="searchMentorFunc">
         <span class="absolute inset-y-0 left-0 flex items-center pl-3">
           <svg class="w-5 h-5 text-gray-400" viewBox="0 0 24 24" fill="none">
@@ -173,6 +173,7 @@ export default {
   },
   beforeCreate() {
     let userType = localStorage.getItem("whoIs");
+    this.$store.state.userType = userType;
     let userID = localStorage.getItem("userId");
     let mentorID = localStorage.getItem("mentorId");
 
