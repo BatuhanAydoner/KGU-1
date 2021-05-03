@@ -201,7 +201,11 @@ export default {
           let parsedToken = parseJwt(res.data.token);
           console.log("parsed ", parsedToken);
           let userIdToLStorage = parsedToken.id;
-          localStorage.setItem("mentorId", userIdToLStorage);
+          if (whoIs == "users") {
+            localStorage.setItem("userId", userIdToLStorage);
+          } else {
+            localStorage.setItem("mentorId", userIdToLStorage);
+          }
 
           this.$router.push("/");
           this.$store.state.isLogged = true;

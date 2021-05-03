@@ -94,12 +94,24 @@
               {{ this.mentorInfo.mentor_about }}
             </p>
 
-            <div class="flex pb-5">
-              <span class="title-font font-medium text-2xl text-gray-900"
-                >₺{{ this.mentorInfo.hour_price }}</span
-              >
+            <div class="flex pb-8">
+              <span class="title-font font-medium text-2xl text-gray-900">
+                ₺{{ this.mentorInfo.hour_price }}
+              </span>
+
+              <date-picker
+                class="flex ml-auto"
+                v-model="value1"
+                format="DD/MM/YYYY"
+                type="date"
+                valueType="format"
+                placeholder="Tarih Seçin"
+              ></date-picker>
+            </div>
+            <div class="">
               <button
                 class="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded"
+                @click="scheduleMeeting"
               >
                 Randevu Al
               </button>
@@ -112,6 +124,9 @@
 </template>
 
 <script>
+import DatePicker from "vue2-datepicker";
+import "vue2-datepicker/index.css";
+import "vue2-datepicker/locale/tr";
 import axios from "axios";
 
 let mentor = [];
@@ -121,8 +136,10 @@ export default {
     return {
       mentorID: this.$route.params.mentorID,
       mentorInfo: [],
+      value1: null,
     };
   },
+  components: { DatePicker },
   beforeCreate() {
     let mentorId = this.$route.params.mentorID;
     let self = this;
@@ -137,6 +154,11 @@ export default {
       .catch(function (error) {
         console.log(error);
       });
+  },
+  methods: {
+    scheduleMeeting() {
+      alert(this.value1);
+    },
   },
 };
 </script>
