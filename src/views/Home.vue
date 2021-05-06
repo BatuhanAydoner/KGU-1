@@ -1,6 +1,6 @@
 <template>
   <div class="flex">
-    <NavBarLogged class="sticky top-0" />
+    <NavBarLogged id="navbarim" class="sticky top-0" />
     <div class="w-full">
       <Mentors
         v-if="
@@ -40,6 +40,7 @@ export default {
       this.$store.state.nowTab = "meetings";
     }
   },
+
   components: {
     NavBarLogged,
     Mentors,

@@ -205,6 +205,7 @@ export default {
             console.log(user);
             this.name = user.firstname + " " + user.lastname;
             this.credit = user.current_jeton;
+            localStorage.setItem("userCredit", user.current_jeton);
           } else if (userType == "mentors") {
             mentor = response.data.mentor;
             console.log(mentor);

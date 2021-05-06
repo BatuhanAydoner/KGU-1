@@ -96,7 +96,6 @@ export default {
         console.log(mentors);
       })
       .catch(function (error) {
-        // handle error
         console.log(error);
       });
   },

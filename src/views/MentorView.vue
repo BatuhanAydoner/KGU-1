@@ -157,7 +157,16 @@ export default {
   },
   methods: {
     scheduleMeeting() {
-      alert(this.value1);
+      let userCredit = localStorage.getItem("userCredit");
+      if (this.mentorInfo.hour_price < userCredit) {
+        // randevu alma islemi
+
+        alert(this.value1);
+      } else {
+        alert("Yetersiz Kredi");
+        this.$store.state.nowTab = "credit";
+        this.$router.push("/");
+      }
     },
   },
 };
