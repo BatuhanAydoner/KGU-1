@@ -1,247 +1,550 @@
 <template>
   <div>
-    <Navbar />
-    <section class="text-gray-600 body-font">
-      <!--  Header Section   -->
-      <section class="text-gray-600 body-font">
-        <div
-          class="container mx-auto flex px-5 py-8 md:py-24 lg:flex-row flex-col items-center"
-        >
-          <!--   Header Description     -->
-          <div
-            class="lg:flex-grow lg:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center"
-          >
-            <h1
-              class="title-font sm:text-3xl text-2xl mb-4 font-medium text-gray-900"
+    <nav
+      class="relative z-50 h-24 select-none sticky top-0 bg-white border-b shadow"
+    >
+      <div
+        class="container relative flex flex-wrap items-center justify-between h-24 mx-auto overflow-hidden font-medium border-gray-200 md:overflow-visible lg:justify-center sm:px-4 md:px-2"
+      >
+        <div class="flex items-center justify-start w-1/4 h-full pr-4">
+          <a href="#home" class="inline-block py-4 md:py-0">
+            <span class="p-1 text-xl font-black leading-none text-gray-900"
+              ><span>KGU</span><span class="text-indigo-600">.</span></span
             >
-              Uzman Fikirlere Ulaşmanın En Kolay Yolu
-            </h1>
-            <p class="mb-8 leading-relaxed">
-              Chillwave portland ugh, knausgaard fam polaroid iPhone. Man braid
-              swag typewriter affogato, hella selvage wolf narwhal dreamcatcher.
-            </p>
-            <div class="flex w-full md:justify-start justify-center items-end">
-              <div class="relative mr-4 md:w-full lg:w-full xl:w-1/2 w-2/4">
-                <label for="hero-field" class="leading-7 text-sm text-gray-600"
-                  >Telefon Numaranız</label
-                >
-                <input
-                  type="text"
-                  id="hero-field"
-                  name="hero-field"
-                  class="w-full bg-gray-100 rounded border bg-opacity-50 border-gray-300 focus:ring-2 focus:ring-indigo-200 focus:bg-transparent focus:border-indigo-500 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+          </a>
+        </div>
+        <div
+          class="top-0 left-0 items-start hidden w-full h-full p-4 text-sm bg-gray-900 bg-opacity-50 md:items-center md:w-3/4 md:absolute lg:text-base md:bg-transparent md:p-0 md:relative md:flex"
+        >
+          <div
+            class="flex-col w-full h-auto overflow-hidden bg-white rounded-lg md:bg-transparent md:overflow-visible md:rounded-none md:relative md:flex md:flex-row"
+          >
+            <router-link
+              to="/"
+              class="inline-flex items-center block w-auto h-16 px-6 text-xl font-black leading-none text-gray-900 md:hidden"
+              >kgu<span class="text-indigo-600">.</span>
+            </router-link>
+            <div
+              class="flex flex-col items-start justify-center w-full text-lg ss text-center md:w-2/3 md:mt-0 md:flex-row md:items-center"
+            >
+              <a
+                @click="toTop"
+                class="inline-block cursor-pointer w-full py-2 mx-0 ml-6 font-medium text-left text-indigo-600 md:ml-0 md:w-auto md:px-0 md:mx-2 lg:mx-3 md:text-center"
+                >Ana Sayfa</a
+              >
+              <a
+                href="#whatKGU"
+                class="inline-block w-full py-2 mx-0 ml-6 font-medium text-left text-indigo-600 md:ml-0 md:w-auto md:px-0 md:mx-2 lg:mx-3 md:text-center"
+              >
+                Özellikler
+              </a>
+
+              <a
+                href="#contact"
+                class="inline-block w-full py-2 mx-0 ml-6 font-medium text-left text-indigo-600 md:ml-0 md:w-auto md:px-0 md:mx-2 lg:mx-3 md:text-center"
+              >
+                İletişim
+              </a>
+            </div>
+            <div
+              class="flex flex-col items-start justify-end w-full pt-4 md:items-center md:w-1/3 md:flex-row md:py-0"
+            >
+              <router-link
+                to="/giris-yap"
+                class="w-full px-6 py-2 mr-0 text-gray-700 md:px-0 lg:pl-2 md:mr-4 lg:mr-5 md:w-auto"
+              >
+                Giriş Yap
+              </router-link>
+              <router-link
+                to="/kayit-ol"
+                class="inline-flex items-center w-full px-6 py-3 text-sm font-medium leading-4 text-white bg-indigo-600 md:px-3 md:w-auto md:rounded-full lg:px-5 hover:bg-indigo-500 focus:outline-none md:focus:ring-2 focus:ring-0 focus:ring-offset-2 focus:ring-indigo-600"
+              >
+                Kayıt Ol
+              </router-link>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Section 1 -->
+    <section class="skewed-bottom-right" id="home">
+      <div class="bg-gray-50 pt-12 lg:pt-12 pb-20 radius-for-skewed">
+        <div class="container mx-auto px-4">
+          <div class="flex flex-wrap -mx-4">
+            <div
+              class="w-full lg:w-1/2 px-4 mb-12 md:mb-20 lg:mb-0 flex items-center"
+            >
+              <div class="w-full text-center lg:text-left">
+                <div class="max-w-md mx-auto lg:mx-0">
+                  <h2 class="mb-3 text-4xl lg:text-5xl font-bold font-heading">
+                    <span>Kariyerinizdeki Basamaklarını</span>
+                    <span class="text-purple-600"> Hızlıca Çıkın</span>
+                  </h2>
+                </div>
+                <div class="max-w-sm mx-auto lg:mx-0">
+                  <p class="mb-6 text-gray-400 leading-relaxed text-base">
+                    KGU, Alanında Uzman İnsanları Bulup Fikir Danışabileceğiniz
+                    Bir Kariyer Gelişim Platformudur
+                  </p>
+                  <div>
+                    <router-link
+                      class="inline-block mb-3 lg:mb-0 lg:mr-3 w-full lg:w-auto py-2 px-6 leading-loose bg-purple-600 hover:bg-purple-700 text-white font-semibold rounded-l-xl rounded-t-xl transition duration-200"
+                      to="/kayit-ol"
+                    >
+                      Hemen Başlayın
+                    </router-link>
+                    <a
+                      class="inline-block w-full border shadow lg:w-auto py-2 px-6 leading-loose font-semibold bg-white hover:bg-gray-50 rounded-l-xl rounded-t-xl transition duration-200"
+                      href="#whatKGU"
+                    >
+                      Veri Güvenliği
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="w-full lg:w-1/2 px-4 flex items-center justify-center">
+              <div class="relative" style="z-index: 0">
+                <img
+                  src="../../assets/hand.png"
+                  class="w-5/6 max-w-lg object-cover mt-8"
+                  alt=""
                 />
               </div>
-              <button
-                class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg"
-              >
-                Linki Gönder
-              </button>
-            </div>
-            <p class="text-sm mt-2 text-gray-500 mb-8 w-full">
-              Mobil uygulamayı indirme linkini telefonunuza SMS olarak
-              gönderebilirsiniz.
-            </p>
-            <div class="flex lg:flex-row md:flex-col">
-              <button
-                class="bg-gray-100 inline-flex py-3 px-5 rounded-lg items-center hover:bg-gray-200 focus:outline-none border-gray-400 border-2 border-solid"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="currentColor"
-                  class="w-6 h-6"
-                  viewBox="0 0 512 512"
-                >
-                  <path
-                    d="M99.617 8.057a50.191 50.191 0 00-38.815-6.713l230.932 230.933 74.846-74.846L99.617 8.057zM32.139 20.116c-6.441 8.563-10.148 19.077-10.148 30.199v411.358c0 11.123 3.708 21.636 10.148 30.199l235.877-235.877L32.139 20.116zM464.261 212.087l-67.266-37.637-81.544 81.544 81.548 81.548 67.273-37.64c16.117-9.03 25.738-25.442 25.738-43.908s-9.621-34.877-25.749-43.907zM291.733 279.711L60.815 510.629c3.786.891 7.639 1.371 11.492 1.371a50.275 50.275 0 0027.31-8.07l266.965-149.372-74.849-74.847z"
-                  ></path>
-                </svg>
-                <span class="ml-4 flex items-start flex-col leading-none">
-                  <span class="text-xs text-gray-600 mb-1"
-                    >Android Uygulaması</span
-                  >
-                  <span class="title-font font-medium">Google Play</span>
-                </span>
-              </button>
-              <button
-                class="bg-gray-100 inline-flex py-3 px-5 rounded-lg items-center lg:ml-4 md:ml-0 ml-4 md:mt-4 mt-0 lg:mt-0 hover:bg-gray-200 focus:outline-none border-gray-400 border-2 border-solid"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="currentColor"
-                  class="w-6 h-6"
-                  viewBox="0 0 305 305"
-                >
-                  <path
-                    d="M40.74 112.12c-25.79 44.74-9.4 112.65 19.12 153.82C74.09 286.52 88.5 305 108.24 305c.37 0 .74 0 1.13-.02 9.27-.37 15.97-3.23 22.45-5.99 7.27-3.1 14.8-6.3 26.6-6.3 11.22 0 18.39 3.1 25.31 6.1 6.83 2.95 13.87 6 24.26 5.81 22.23-.41 35.88-20.35 47.92-37.94a168.18 168.18 0 0021-43l.09-.28a2.5 2.5 0 00-1.33-3.06l-.18-.08c-3.92-1.6-38.26-16.84-38.62-58.36-.34-33.74 25.76-51.6 31-54.84l.24-.15a2.5 2.5 0 00.7-3.51c-18-26.37-45.62-30.34-56.73-30.82a50.04 50.04 0 00-4.95-.24c-13.06 0-25.56 4.93-35.61 8.9-6.94 2.73-12.93 5.09-17.06 5.09-4.64 0-10.67-2.4-17.65-5.16-9.33-3.7-19.9-7.9-31.1-7.9l-.79.01c-26.03.38-50.62 15.27-64.18 38.86z"
-                  ></path>
-                  <path
-                    d="M212.1 0c-15.76.64-34.67 10.35-45.97 23.58-9.6 11.13-19 29.68-16.52 48.38a2.5 2.5 0 002.29 2.17c1.06.08 2.15.12 3.23.12 15.41 0 32.04-8.52 43.4-22.25 11.94-14.5 17.99-33.1 16.16-49.77A2.52 2.52 0 00212.1 0z"
-                  ></path>
-                </svg>
-                <span class="ml-4 flex items-start flex-col leading-none">
-                  <span class="text-xs text-gray-600 mb-1">iOS Uygulaması</span>
-                  <span class="title-font font-medium">App Store</span>
-                </span>
-              </button>
             </div>
           </div>
-          <!--   Header Image     -->
-          <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 md:-mt-7">
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2 -->
+    <section
+      class="flex items-center justify-center py-10 text-white bg-white sm:py-16 md:py-24 lg:py-32 bg-gray-100"
+    >
+      <div class="relative max-w-3xl px-10 text-center text-white auto lg:px-0">
+        <div class="flex flex-col w-full md:flex-row">
+          <!-- Top Text -->
+          <div class="flex justify-between">
+            <h1
+              class="relative flex flex-col text-6xl font-extrabold text-left text-black"
+            >
+              <span class="text-gray-900">
+                <span class="text-indigo-600">K</span><span>endinizi</span>
+              </span>
+              <span class="text-gray-900">
+                <span class="text-indigo-600">G</span><span>eleceğe</span>
+              </span>
+              <span class="text-gray-900">
+                <span class="text-indigo-600">U</span><span>laştırın</span>
+              </span>
+            </h1>
+          </div>
+          <!-- Right Image -->
+          <div
+            class="relative top-0 right-0 h-64 mt-12 md:-mt-16 md:absolute md:h-96"
+          >
             <img
-              class="object-cover object-center rounded hidden lg:block"
-              alt="hero"
-              src="https://i.ibb.co/Njj4qKz/saly.png"
+              src="../../assets/interface.png"
+              class="object-cover pl-12 mr-5 w-9/12 mx-auto"
             />
           </div>
         </div>
-      </section>
 
-      <!--  How To Use Section  -->
-      <section class="text-gray-600 body-font" id="nasil-kullanilir">
-        <div class="container px-5 py-20 mx-auto flex flex-wrap">
-          <div class="flex flex-wrap w-full">
-            <!--  Hot To Use Description Section  -->
-            <div class="lg:w-2/5 md:w-1/2 md:pr-10 md:py-6">
-              <div class="flex relative pb-12">
-                <div
-                  class="h-full w-10 absolute inset-0 flex items-center justify-center"
-                >
-                  <div class="h-full w-1 bg-gray-200 pointer-events-none"></div>
-                </div>
-                <div
-                  class="flex-shrink-0 w-10 h-10 rounded-full bg-indigo-500 inline-flex items-center justify-center text-white relative z-10"
-                >
+        <!-- Separator -->
+        <div class="my-12 border-b border-gray-300 lg:my-24"></div>
+
+        <!-- Bottom Text -->
+        <h2 class="text-left text-gray-500 xl:text-xl">
+          KGU, arayüzü en iyi kullanım deneyimi için optimize edilmiştir.
+          Kullanıcılarımızın hiçbir şekilde zorlanmaması için arayüzün
+          olabildiğince sade ve işlevsel olarak tasarlanmıştır.
+        </h2>
+      </div>
+    </section>
+
+    <!-- Section 3 -->
+    <section class="py-6 bg-gray-100" id="whatKGU">
+      <div
+        class="container items-center max-w-6xl px-4 px-10 mx-auto sm:px-20 md:px-32 lg:px-16"
+      >
+        <div class="flex flex-wrap items-center -mx-3">
+          <div class="order-1 w-full px-3 lg:w-1/2 lg:order-0">
+            <div class="w-full lg:max-w-md">
+              <h2
+                class="mb-4 text-3xl font-bold leading-tight tracking-tight sm:text-4xl font-heading"
+              >
+                Verileriniz Ortalıklara Dağılmasın
+              </h2>
+              <p class="mb-4 font-medium tracking-tight text-gray-400 xl:mb-6">
+                KGU içerisinde bulunan özel iletişim algoritması sayesinde her
+                adımınız sunucularımızda şifreli bir halde tutulmakta ve
+                verilerinizi dilediğiniz zaman silebilirsiniz.
+              </p>
+              <ul>
+                <li class="flex items-center py-2 space-x-4 xl:py-3">
                   <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    x="0px"
-                    y="0px"
-                    width="60%"
-                    viewBox="0 0 172 172"
-                    style="fill: #000000"
-                  >
-                    <g
-                      fill="none"
-                      fill-rule="nonzero"
-                      stroke="none"
-                      stroke-width="1"
-                      stroke-linecap="butt"
-                      stroke-linejoin="miter"
-                      stroke-miterlimit="10"
-                      stroke-dasharray=""
-                      stroke-dashoffset="0"
-                      font-family="none"
-                      font-weight="none"
-                      font-size="none"
-                      text-anchor="none"
-                      style="mix-blend-mode: normal"
-                    >
-                      <path d="M0,172v-172h172v172z" fill="none"></path>
-                      <g fill="#ffffff">
-                        <path
-                          d="M86,6.88c-33.51271,0 -62.18313,20.87795 -73.69797,50.35031c-0.51407,1.15767 -0.35041,2.50418 0.426,3.50501c0.77641,1.00082 2.03998,1.49405 3.2891,1.28389c1.24912,-0.21017 2.28171,-1.08973 2.68787,-2.28952c10.50804,-26.89547 36.63795,-45.96969 67.295,-45.96969c39.9368,0 72.24,32.3032 72.24,72.24c0,39.9368 -32.3032,72.24 -72.24,72.24c-30.65705,0 -56.78696,-19.07421 -67.295,-45.96969c-0.40616,-1.19979 -1.43875,-2.07935 -2.68787,-2.28952c-1.24912,-0.21017 -2.51269,0.28306 -3.2891,1.28389c-0.77641,1.00082 -0.94007,2.34733 -0.426,3.50501c11.51483,29.47237 40.18526,50.35031 73.69797,50.35031c43.6552,0 79.12,-35.4648 79.12,-79.12c0,-43.6552 -35.4648,-79.12 -79.12,-79.12zM89.4064,55.0064c-1.39982,0.00037 -2.65984,0.84884 -3.18658,2.14577c-0.52674,1.29693 -0.21516,2.7837 0.78799,3.76001l21.64781,21.64781h-98.33563c-1.24059,-0.01754 -2.39452,0.63425 -3.01993,1.7058c-0.62541,1.07155 -0.62541,2.39684 0,3.46839c0.62541,1.07155 1.77935,1.72335 3.01993,1.7058h98.33563l-21.64781,21.64781c-0.89867,0.86281 -1.26068,2.14404 -0.94641,3.34956c0.31427,1.20552 1.2557,2.14696 2.46122,2.46122c1.20552,0.31427 2.48675,-0.04774 3.34956,-0.94641l27.52,-27.52c1.34287,-1.34342 1.34287,-3.52095 0,-4.86437l-27.52,-27.52c-0.64765,-0.66575 -1.53698,-1.04135 -2.46578,-1.04141z"
-                        ></path>
-                      </g>
-                    </g>
-                  </svg>
-                </div>
-                <div class="flex-grow pl-4">
-                  <h2
-                    class="font-medium title-font text-sm text-gray-900 mb-1 tracking-wider"
-                  >
-                    Adım 1
-                  </h2>
-                  <p class="leading-relaxed">
-                    <router-link class="text-blue-700" to="/"
-                      >Giriş</router-link
-                    >
-                    yaptıktan sonra dilediğiniz danışmanın profiline girin ve
-                    uygun tarih için randevu alın.
-                  </p>
-                </div>
-              </div>
-              <div class="flex relative pb-12">
-                <div
-                  class="h-full w-10 absolute inset-0 flex items-center justify-center"
-                >
-                  <div class="h-full w-1 bg-gray-200 pointer-events-none"></div>
-                </div>
-                <div
-                  class="flex-shrink-0 w-10 h-10 rounded-full bg-indigo-500 inline-flex items-center justify-center text-white relative z-10"
-                >
-                  <ion-icon name="logo-paypal"></ion-icon>
-                </div>
-                <div class="flex-grow pl-4">
-                  <h2
-                    class="font-medium title-font text-sm text-gray-900 mb-1 tracking-wider"
-                  >
-                    Adım 2
-                  </h2>
-                  <p class="leading-relaxed">
-                    Gerekli olan krediye sahip olduğunuzdan emin olun eğer
-                    krediniz yoksa kredi satın alın.
-                  </p>
-                </div>
-              </div>
-              <div class="flex relative">
-                <div
-                  class="flex-shrink-0 w-10 h-10 rounded-full bg-indigo-500 inline-flex items-center justify-center text-white relative z-10"
-                >
-                  <svg
+                    class="w-8 h-8 text-pink-500"
                     fill="none"
                     stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    class="w-5 h-5"
                     viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
                   >
-                    <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
-                    <path d="M22 4L12 14.01l-3-3"></path>
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"
+                    ></path>
                   </svg>
-                </div>
-                <div class="flex-grow pl-4">
-                  <h2
-                    class="font-medium title-font text-sm text-gray-900 mb-1 tracking-wider"
+                  <span class="font-medium text-gray-500">
+                    Hızlı Sistem ve Akıcı Arayüz
+                  </span>
+                </li>
+                <li class="flex items-center py-2 space-x-4 xl:py-3">
+                  <svg
+                    class="w-8 h-8 text-yellow-500"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
                   >
-                    Görüşme Vakti <span class="text-xl">🥳</span>
-                  </h2>
-                  <p class="leading-relaxed">
-                    Randevu zamanı geldiğinde gelen bildirim üzerinden odaya
-                    katılabilirsiniz.
-                  </p>
-                </div>
-              </div>
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"
+                    ></path>
+                  </svg>
+                  <span class="font-medium text-gray-500">
+                    Harici bir programa ihtiyaç yok
+                  </span>
+                </li>
+                <li class="flex items-center py-2 space-x-4 xl:py-3">
+                  <svg
+                    class="w-8 h-8 text-green-500"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                    ></path>
+                  </svg>
+                  <span class="font-medium text-gray-500">
+                    Testlerden %100 başarılı geçmiş güvenlik duvarı
+                  </span>
+                </li>
+              </ul>
             </div>
-            <!--  Hot To Use Image Section  -->
+          </div>
+          <div
+            class="w-full px-3 mb-12 lg:w-1/2 order-0 lg:order-1 lg:mb-0 pb-48"
+          >
             <img
-              class="lg:w-3/5 object-scale-down md:w-1/2 rounded-lg md:mt-0"
-              src="https://i.ibb.co/7tLzRVT/Vector-Illustration-Question.png"
-              alt="Question Image"
+              class="mx-auto sm:max-w-sm lg:max-w-full"
+              src="../../assets/saly.png"
+              alt="feature image"
             />
           </div>
         </div>
-      </section>
+      </div>
+    </section>
+
+    <!-- Section 4 -->
+    <section
+      class="flex items-center justify-center pb-16 min-w-screen bg-gray-100"
+    >
+      <div class="max-w-6xl px-12 mx-auto md:px-16">
+        <div
+          class="flex flex-col items-center lg:flex-row justify-center items-center"
+        >
+          <div class="w-full lg:w-1/2">
+            <p
+              class="text-4xl text-center mb-4 text-indigo-500 font-old leading-10 tracking-tight text-gray-900 sm:text-5xl sm:leading-none md:text-6xl lg:text-3xl"
+            >
+              KGU Hakkındaki Yorumlar
+            </p>
+            <blockquote
+              class="flex items-center justify-between w-full col-span-1 p-6 bg-white rounded-lg shadow"
+            >
+              <div class="flex flex-col pr-12">
+                <div class="relative pl-12">
+                  <svg
+                    class="absolute left-0 w-10 h-10 text-indigo-500 fill-current"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 100 125"
+                  >
+                    <path
+                      d="M30.7 42c0 6.1 12.6 7 12.6 22 0 11-7.9 19.2-18.9 19.2C12.7 83.1 5 72.6 5 61.5c0-19.2 18-44.6 29.2-44.6 2.8 0 7.9 2 7.9 5.4S30.7 31.6 30.7 42zM82.4 42c0 6.1 12.6 7 12.6 22 0 11-7.9 19.2-18.9 19.2-11.8 0-19.5-10.5-19.5-21.6 0-19.2 18-44.6 29.2-44.6 2.8 0 7.9 2 7.9 5.4S82.4 31.6 82.4 42z"
+                    ></path>
+                  </svg>
+                  <p class="mt-2 text-sm text-gray-600 sm:text-base lg:text-sm">
+                    Harika bir ürün 🚀 <br />Dilediğim alandaki uzman insanlara
+                    rahatlıkla ulaşabiliryor ve
+                  </p>
+                </div>
+
+                <h3
+                  class="pl-12 mt-3 text-sm font-medium leading-5 text-gray-800 truncate sm:text-base lg:text-sm lg:text-base"
+                >
+                  Nazlı Gülser
+                  <span class="mt-1 text-sm leading-5 text-gray-500 truncate"
+                    >- Yazılım Mühendisi</span
+                  >
+                </h3>
+              </div>
+              <img
+                class="flex-shrink-0 w-24 h-24 bg-gray-300 rounded-full"
+                src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=4&amp;w=256&amp;h=256&amp;q=60"
+                alt=""
+              />
+            </blockquote>
+            <blockquote
+              class="flex items-center justify-between w-full col-span-1 p-6 mt-4 bg-white rounded-lg shadow"
+            >
+              <div class="flex flex-col pr-12">
+                <div class="relative pl-12">
+                  <svg
+                    class="absolute left-0 w-10 h-10 text-indigo-500 fill-current"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 100 125"
+                  >
+                    <path
+                      d="M30.7 42c0 6.1 12.6 7 12.6 22 0 11-7.9 19.2-18.9 19.2C12.7 83.1 5 72.6 5 61.5c0-19.2 18-44.6 29.2-44.6 2.8 0 7.9 2 7.9 5.4S30.7 31.6 30.7 42zM82.4 42c0 6.1 12.6 7 12.6 22 0 11-7.9 19.2-18.9 19.2-11.8 0-19.5-10.5-19.5-21.6 0-19.2 18-44.6 29.2-44.6 2.8 0 7.9 2 7.9 5.4S82.4 31.6 82.4 42z"
+                    ></path>
+                  </svg>
+                  <p class="mt-2 text-sm text-gray-600 sm:text-base lg:text-sm">
+                    Hayatımdaki en büyük tutku olan eğitim verme işini çok
+                    kolaylaştırdığı için KGU'ya minnetarım.
+                  </p>
+                </div>
+                <h3
+                  class="pl-12 mt-3 text-sm font-medium leading-5 text-gray-800 truncate sm:text-base lg:text-sm lg:text-base"
+                >
+                  John Doe
+                  <span class="mt-1 text-sm leading-5 text-gray-500 truncate"
+                    >- Ressam</span
+                  >
+                </h3>
+                <p class="mt-1 text-sm leading-5 text-gray-500 truncate"></p>
+              </div>
+              <img
+                class="flex-shrink-0 w-24 h-24 bg-gray-300 rounded-full"
+                src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;aauto=format&amp;fit=facearea&amp;facepad=4&amp;w=256&amp;h=256&amp;q=60"
+                alt=""
+              />
+            </blockquote>
+            <blockquote
+              class="flex items-center justify-between w-full col-span-1 p-6 mt-4 mb-4 bg-white rounded-lg shadow"
+            >
+              <div class="flex flex-col pr-10">
+                <div class="relative pl-12">
+                  <svg
+                    class="absolute left-0 w-10 h-10 text-indigo-500 fill-current"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 100 125"
+                  >
+                    <path
+                      d="M30.7 42c0 6.1 12.6 7 12.6 22 0 11-7.9 19.2-18.9 19.2C12.7 83.1 5 72.6 5 61.5c0-19.2 18-44.6 29.2-44.6 2.8 0 7.9 2 7.9 5.4S30.7 31.6 30.7 42zM82.4 42c0 6.1 12.6 7 12.6 22 0 11-7.9 19.2-18.9 19.2-11.8 0-19.5-10.5-19.5-21.6 0-19.2 18-44.6 29.2-44.6 2.8 0 7.9 2 7.9 5.4S82.4 31.6 82.4 42z"
+                    ></path>
+                  </svg>
+                  <p class="mt-2 text-sm text-gray-600 sm:text-base lg:text-sm">
+                    I can't express enough, how amazing this service has been
+                    for my company.
+                  </p>
+                </div>
+
+                <h3
+                  class="pl-12 mt-3 text-sm font-medium leading-5 text-gray-800 truncate sm:text-base lg:text-sm lg:text-base"
+                >
+                  John Smith
+                  <span class="mt-1 text-sm leading-5 text-gray-500 truncate">
+                    - CEO RIS Company
+                  </span>
+                </h3>
+                <p class="mt-1 text-sm leading-5 text-gray-500 truncate"></p>
+              </div>
+              <img
+                class="flex-shrink-0 w-24 h-24 bg-gray-300 rounded-full"
+                src="https://images.unsplash.com/photo-1545167622-3a6ac756afa4?ixlib=rrb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;aauto=format&amp;fit=facearea&amp;facepad=4&amp;w=256&amp;h=256&amp;q=60"
+                alt=""
+              />
+            </blockquote>
+            <router-link
+              to="/giris-yap"
+              class="flex items-center justify-center px-8 py-3 text-base font-medium leading-6 text-white transition duration-150 ease-in-out bg-indigo-600 border border-transparent rounded-md shadow hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo md:py-4 md:text-lg md:px-10"
+            >
+              Danışmanları Listele
+            </router-link>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5 -->
+    <section class="w-full px-8 py-16 bg-white xl:px-8" id="contact">
+      <div class="max-w-5xl mx-auto">
+        <div class="flex flex-col items-center md:flex-row">
+          <div class="w-full space-y-5 md:w-3/5 md:pr-16">
+            <h2
+              class="text-2xl font-extrabold text-blue-500 leading-none text-black sm:text-3xl md:text-5xl"
+            >
+              Kafanızdaki Soruları Aydınlığa Ulaştırın
+            </h2>
+            <p class="text-xl text-gray-600 md:pr-16">
+              KGU ile ilgili soru veya önerinizi bize gönderebilir, en kısa
+              sürede geri dönüş yapılmaktadır.
+              <br />
+              <span class="text-sm text-gray-400">
+                Öneriler karşılığında çeşitli indirimler kazanabilirsiniz.
+              </span>
+            </p>
+          </div>
+
+          <div class="w-full mt-16 md:mt-0 md:w-2/5">
+            <div
+              class="relative z-10 h-auto p-8 py-10 overflow-hidden bg-white border-b-2 border-gray-300 rounded-lg shadow-2xl px-7"
+            >
+              <h3 class="mb-6 text-2xl font-medium text-center">
+                Bize Ulaşabilirsiniz 👇🏼
+              </h3>
+              <input
+                type="text"
+                class="block w-full px-4 py-3 mb-4 border border-2 border-transparent border-gray-200 rounded-lg focus:ring focus:ring-blue-500 focus:outline-none"
+                placeholder="İsim Soyisim"
+              />
+              <input
+                type="email"
+                class="block w-full px-4 py-3 mb-4 border border-2 border-transparent border-gray-200 rounded-lg focus:ring focus:ring-blue-500 focus:outline-none"
+                placeholder="Email adresiniz"
+              />
+              <textarea
+                class="block w-full px-4 py-2 mb-4 border border-2 border-transparent border-gray-200 rounded-lg focus:ring focus:ring-blue-500 focus:outline-none"
+                placeholder="Düşünce veya Sorunuz..."
+              />
+              <div class="block">
+                <button
+                  class="w-full px-3 py-4 font-medium text-white bg-blue-600 rounded-lg"
+                >
+                  Gönder
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 6 -->
+    <section class="text-gray-700 bg-white body-font">
+      <div
+        class="container flex flex-col items-center px-8 py-8 mx-auto max-w-7xl sm:flex-row"
+      >
+        <a
+          href="#_"
+          class="text-xl font-black leading-none text-gray-900 select-none logo"
+          >kgu<span class="text-indigo-600">.</span></a
+        >
+        <p
+          class="mt-4 text-sm text-gray-500 sm:ml-4 sm:pl-4 sm:border-l sm:border-gray-200 sm:mt-0"
+        >
+          © 2021 KGU - Kariyer Gelişim Uygulaması
+        </p>
+        <span
+          class="inline-flex justify-center mt-4 space-x-5 sm:ml-auto sm:mt-0 sm:justify-start"
+        >
+          <a href="#" class="text-gray-400 hover:text-gray-500">
+            <span class="sr-only">Facebook</span>
+            <svg
+              class="w-6 h-6"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
+                clip-rule="evenodd"
+              ></path>
+            </svg>
+          </a>
+
+          <a href="#" class="text-gray-400 hover:text-gray-500">
+            <span class="sr-only">Instagram</span>
+            <svg
+              class="w-6 h-6"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z"
+                clip-rule="evenodd"
+              ></path>
+            </svg>
+          </a>
+
+          <a href="#" class="text-gray-400 hover:text-gray-500">
+            <span class="sr-only">Twitter</span>
+            <svg
+              class="w-6 h-6"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"
+              ></path>
+            </svg>
+          </a>
+
+          <a href="#" class="text-gray-400 hover:text-gray-500">
+            <span class="sr-only">GitHub</span>
+            <svg
+              class="w-6 h-6"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                clip-rule="evenodd"
+              ></path>
+            </svg>
+          </a>
+        </span>
+      </div>
     </section>
   </div>
 </template>
 
 <script>
-import Navbar from "../../components/without_login_components/Navbar";
-
 export default {
   name: "Home",
-  components: {
-    Navbar,
+  methods: {
+    toTop() {
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+    },
   },
 };
 </script>
 
 <style scoped>
-.section-height {
-  height: 83vh;
-}
-p {
+p,
+.ss {
   font-family: "Comfortaa", cursive;
+}
+
+h2 span {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 </style>

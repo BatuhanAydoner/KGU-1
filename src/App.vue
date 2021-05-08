@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app w-screen">
     <router-view />
   </div>
 </template>
@@ -15,6 +15,6 @@ export default {
 </script>
 <style>
 body {
-  background-color: #f0f3fe;
+  background-color: #f3f4f6;
 }
 </style>
