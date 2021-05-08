@@ -1,5 +1,7 @@
 <template>
-  <div class="flex flex-col w-64 h-screen px-4 py-8 bg-white border-r">
+  <div
+    class="flex flex-col w-64 h-screen px-4 py-8 bg-white border-r sticky top-0 left-0"
+  >
     <router-link
       to="/"
       class="flex items-center justify-center title-font font-medium items-center text-gray-900 mb-4 md:mb-0"
@@ -167,7 +169,9 @@ export default {
     searchMentorFunc() {
       console.log("butona tiklandi");
       this.$store.state.searchMentorKey = this.searchMentor;
-      this.$store.state.nowTab = "settings";
+      this.searchMentor = "";
+      this.$store.state.keyForSearchMentor++;
+      this.$store.state.nowTab = "credit";
       this.$store.state.nowTab = "searchMentor";
     },
   },

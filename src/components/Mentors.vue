@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-wrap justify-center">
+  <div class="flex flex-wrap justify-center cl">
     <div
       class="flex justify-around my-4 mx-5 max-w-md bg-white shadow-lg rounded-lg overflow-hidden"
       v-for="mentor in allMentorsList"
@@ -102,4 +102,4 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped lang="scss"></style>

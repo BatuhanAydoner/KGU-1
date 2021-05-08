@@ -12,6 +12,7 @@ export default new Vuex.Store({
     nowTab: 'mentors',
     allMentors: {},
     searchMentorKey: "",
+    keyForSearchMentor: 0,
   },
   mutations: {},
   actions: {},

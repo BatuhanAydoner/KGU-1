@@ -158,9 +158,8 @@ export default {
   methods: {
     scheduleMeeting() {
       let userCredit = localStorage.getItem("userCredit");
-      if (this.mentorInfo.hour_price < userCredit) {
+      if (parseInt(this.mentorInfo.hour_price) < userCredit) {
         // randevu alma islemi
-
         alert(this.value1);
       } else {
         alert("Yetersiz Kredi");

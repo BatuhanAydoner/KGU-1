@@ -1,6 +1,6 @@
 <template>
   <div class="flex">
-    <NavBarLogged id="navbarim" class="sticky top-0" />
+    <NavBarLogged id="navbarim" class="" />
     <div class="w-full">
       <Mentors
         v-if="
