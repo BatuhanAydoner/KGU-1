@@ -7,9 +7,8 @@
       />
     </transition>
     <div
-      class="flex max-w-sm mx-auto overflow-hidden bg-white rounded-xl shadow-lg lg:max-w-4xl md:mt-24"
+      class="flex max-w-sm mx-auto overflow-hidden bg-white rounded-xl shadow-lg lg:max-w-4xl md:mt-32"
     >
-      <!--    https://elements.envato.com/welcome-screen-girl-GU84WWU -->
       <div
         class="hidden bg-cover pr-5 lg:block lg:w-1/2"
         style="
@@ -31,8 +30,9 @@
           <label
             class="block mb-2 text-sm font-medium text-gray-600"
             for="LoggingEmailAddress"
-            >Email Adresiniz</label
           >
+            Email Adresiniz
+          </label>
           <input
             v-model="user.email"
             id="LoggingEmailAddress"
@@ -153,6 +153,7 @@
 import axios from "axios";
 import { OrbitSpinner } from "epic-spinners";
 import ErrorAlert from "../../components/without_login_components/ErrorAlert";
+
 export default {
   name: "Login",
   data() {
@@ -224,6 +225,7 @@ export default {
     ErrorAlert,
   },
 };
+
 function parseJwt(token) {
   var base64Url = token.split(".")[1];
   var base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
@@ -245,6 +247,7 @@ function parseJwt(token) {
 .fade-leave-active {
   transition: opacity 0.5s;
 }
+
 .fade-enter,
 .fade-leave-to {
   opacity: 0;

@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex max-w-sm mx-auto overflow-hidden bg-white rounded-xl shadow-lg lg:max-w-4xl md:mt-10"
+    class="flex max-w-sm mx-auto overflow-hidden bg-white rounded-xl shadow-lg lg:max-w-4xl md:mt-32"
   >
     <transition name="fade">
       <ErrorAlert
@@ -157,6 +157,7 @@ import axios from "axios";
 import { OrbitSpinner } from "epic-spinners";
 import ErrorAlert from "../../components/without_login_components/ErrorAlert";
 import WarningAlert from "../../components/without_login_components/WarningAlert";
+
 export default {
   name: "Login",
   data() {
@@ -217,13 +218,4 @@ export default {
 };
 </script>
 
-<style scoped>
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.5s;
-}
-.fade-enter,
-.fade-leave-to {
-  opacity: 0;
-}
-</style>
+<style scoped></style>

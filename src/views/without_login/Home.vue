@@ -1,10 +1,10 @@
 <template>
   <div>
     <nav
-      class="relative z-50 h-24 select-none sticky top-0 bg-white border-b shadow"
+      class="relative z-50 h-20 select-none sticky top-0 bg-white border-b shadow"
     >
       <div
-        class="container relative flex flex-wrap items-center justify-between h-24 mx-auto overflow-hidden font-medium border-gray-200 md:overflow-visible lg:justify-center sm:px-4 md:px-2"
+        class="container relative flex flex-wrap items-center justify-between h-20 mx-auto overflow-hidden font-medium border-gray-200 md:overflow-visible lg:justify-center sm:px-4 md:px-2"
       >
         <div class="flex items-center justify-start w-1/4 h-full pr-4">
           <a href="#home" class="inline-block py-4 md:py-0">
@@ -69,7 +69,7 @@
 
     <!-- Section 1 -->
     <section class="skewed-bottom-right" id="home">
-      <div class="bg-gray-50 pt-12 lg:pt-12 pb-20 radius-for-skewed">
+      <div class="bg-gray-50 pt-12 lg:pt-12 pb-20 bg-gray-100">
         <div class="container mx-auto px-4">
           <div class="flex flex-wrap -mx-4">
             <div
@@ -77,19 +77,19 @@
             >
               <div class="w-full text-center lg:text-left">
                 <div class="max-w-md mx-auto lg:mx-0">
-                  <h2 class="mb-3 text-4xl lg:text-5xl font-bold font-heading">
+                  <h2 class="mb-3 text-5xl lg:text-6xl font-bold">
                     <span>Kariyerinizdeki Basamaklarını</span>
                     <span class="text-purple-600"> Hızlıca Çıkın</span>
                   </h2>
                 </div>
                 <div class="max-w-sm mx-auto lg:mx-0">
-                  <p class="mb-6 text-gray-400 leading-relaxed text-base">
+                  <p class="mb-6 text-gray-400 leading-relaxed text-lg">
                     KGU, Alanında Uzman İnsanları Bulup Fikir Danışabileceğiniz
                     Bir Kariyer Gelişim Platformudur
                   </p>
                   <div>
                     <router-link
-                      class="inline-block mb-3 lg:mb-0 lg:mr-3 w-full lg:w-auto py-2 px-6 leading-loose bg-purple-600 hover:bg-purple-700 text-white font-semibold rounded-l-xl rounded-t-xl transition duration-200"
+                      class="inline-block mb-3 lg:mb-0 lg:mr-3 w-auto lg:w-auto py-2 px-6 leading-loose bg-purple-600 hover:bg-purple-700 text-white font-semibold rounded-l-xl rounded-t-xl transition duration-200"
                       to="/kayit-ol"
                     >
                       Hemen Başlayın
@@ -120,7 +120,7 @@
 
     <!-- Section 2 -->
     <section
-      class="flex items-center justify-center py-10 text-white bg-white sm:py-16 md:py-24 lg:py-32 bg-gray-100"
+      class="flex items-center justify-center py-10 text-white bg-white sm:py-16 md:py-24 lg:py-64 bg-gray-100"
     >
       <div class="relative max-w-3xl px-10 text-center text-white auto lg:px-0">
         <div class="flex flex-col w-full md:flex-row">
@@ -146,16 +146,17 @@
           >
             <img
               src="../../assets/interface.png"
+              alt=""
               class="object-cover pl-12 mr-5 w-9/12 mx-auto"
             />
           </div>
         </div>
 
         <!-- Separator -->
-        <div class="my-12 border-b border-gray-300 lg:my-24"></div>
+        <div class="mt-12 border-b border-gray-300 lg:mt-24"></div>
 
         <!-- Bottom Text -->
-        <h2 class="text-left text-gray-500 xl:text-xl">
+        <h2 class="text-left text-gray-500 xl:text-xl mt-8">
           KGU, arayüzü en iyi kullanım deneyimi için optimize edilmiştir.
           Kullanıcılarımızın hiçbir şekilde zorlanmaması için arayüzün
           olabildiğince sade ve işlevsel olarak tasarlanmıştır.
@@ -164,7 +165,7 @@
     </section>
 
     <!-- Section 3 -->
-    <section class="py-6 bg-gray-100" id="whatKGU">
+    <section class="pb-32 bg-gray-100" id="whatKGU">
       <div
         class="container items-center max-w-6xl px-4 px-10 mx-auto sm:px-20 md:px-32 lg:px-16"
       >
@@ -257,18 +258,18 @@
 
     <!-- Section 4 -->
     <section
-      class="flex items-center justify-center pb-16 min-w-screen bg-gray-100"
+      class="flex items-center justify-center py-16 pb-52 min-w-screen bg-gray-100"
     >
-      <div class="max-w-6xl px-12 mx-auto md:px-16">
+      <div class="max-w-screen mx-auto">
+        <p
+          class="text-4xl text-center mb-12 text-indigo-500 font-old leading-10 tracking-tight text-gray-900 sm:text-5xl sm:leading-none md:text-6xl lg:text-3xl"
+        >
+          KGU Hakkındaki Yorumlar
+        </p>
         <div
           class="flex flex-col items-center lg:flex-row justify-center items-center"
         >
-          <div class="w-full lg:w-1/2">
-            <p
-              class="text-4xl text-center mb-4 text-indigo-500 font-old leading-10 tracking-tight text-gray-900 sm:text-5xl sm:leading-none md:text-6xl lg:text-3xl"
-            >
-              KGU Hakkındaki Yorumlar
-            </p>
+          <div class="w-full lg:w-4/12">
             <blockquote
               class="flex items-center justify-between w-full col-span-1 p-6 bg-white rounded-lg shadow"
             >
@@ -283,7 +284,9 @@
                       d="M30.7 42c0 6.1 12.6 7 12.6 22 0 11-7.9 19.2-18.9 19.2C12.7 83.1 5 72.6 5 61.5c0-19.2 18-44.6 29.2-44.6 2.8 0 7.9 2 7.9 5.4S30.7 31.6 30.7 42zM82.4 42c0 6.1 12.6 7 12.6 22 0 11-7.9 19.2-18.9 19.2-11.8 0-19.5-10.5-19.5-21.6 0-19.2 18-44.6 29.2-44.6 2.8 0 7.9 2 7.9 5.4S82.4 31.6 82.4 42z"
                     ></path>
                   </svg>
-                  <p class="mt-2 text-sm text-gray-600 sm:text-base lg:text-sm">
+                  <p
+                    class="mt-2 text-sm text-gray-600 sm:text-base lg:text-same font-bold"
+                  >
                     Harika bir ürün 🚀 <br />Dilediğim alandaki uzman insanlara
                     rahatlıkla ulaşabiliryor ve
                   </p>
@@ -318,7 +321,9 @@
                       d="M30.7 42c0 6.1 12.6 7 12.6 22 0 11-7.9 19.2-18.9 19.2C12.7 83.1 5 72.6 5 61.5c0-19.2 18-44.6 29.2-44.6 2.8 0 7.9 2 7.9 5.4S30.7 31.6 30.7 42zM82.4 42c0 6.1 12.6 7 12.6 22 0 11-7.9 19.2-18.9 19.2-11.8 0-19.5-10.5-19.5-21.6 0-19.2 18-44.6 29.2-44.6 2.8 0 7.9 2 7.9 5.4S82.4 31.6 82.4 42z"
                     ></path>
                   </svg>
-                  <p class="mt-2 text-sm text-gray-600 sm:text-base lg:text-sm">
+                  <p
+                    class="mt-2 text-sm text-gray-600 sm:text-base lg:text-same font-bold"
+                  >
                     Hayatımdaki en büyük tutku olan eğitim verme işini çok
                     kolaylaştırdığı için KGU'ya minnetarım.
                   </p>
@@ -353,7 +358,9 @@
                       d="M30.7 42c0 6.1 12.6 7 12.6 22 0 11-7.9 19.2-18.9 19.2C12.7 83.1 5 72.6 5 61.5c0-19.2 18-44.6 29.2-44.6 2.8 0 7.9 2 7.9 5.4S30.7 31.6 30.7 42zM82.4 42c0 6.1 12.6 7 12.6 22 0 11-7.9 19.2-18.9 19.2-11.8 0-19.5-10.5-19.5-21.6 0-19.2 18-44.6 29.2-44.6 2.8 0 7.9 2 7.9 5.4S82.4 31.6 82.4 42z"
                     ></path>
                   </svg>
-                  <p class="mt-2 text-sm text-gray-600 sm:text-base lg:text-sm">
+                  <p
+                    class="mt-2 text-sm text-gray-600 sm:text-base lg:text-same font-bold"
+                  >
                     I can't express enough, how amazing this service has been
                     for my company.
                   </p>
@@ -382,6 +389,7 @@
               Danışmanları Listele
             </router-link>
           </div>
+          <img class="w-2/4 pl-12" src="../../assets/vr.png" alt="" />
         </div>
       </div>
     </section>
@@ -446,7 +454,7 @@
         class="container flex flex-col items-center px-8 py-8 mx-auto max-w-7xl sm:flex-row"
       >
         <a
-          href="#_"
+          href="#"
           class="text-xl font-black leading-none text-gray-900 select-none logo"
           >kgu<span class="text-indigo-600">.</span></a
         >
@@ -538,13 +546,13 @@ export default {
 </script>
 
 <style scoped>
-p,
-.ss {
+p {
   font-family: "Comfortaa", cursive;
 }
 
-h2 span {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+h2 span,
+.ss {
+  font-family: -apple-system, "Segoe UI", BlinkMacSystemFont, Roboto, Helvetica,
     Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 </style>
