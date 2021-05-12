@@ -1,8 +1,25 @@
 <template>
   <div class="w-full mt-8">
-    <p class="text-4xl text-center mb-8">Ayarlar</p>
-    <div class="mx-auto w-64">
-      <div class="relative">
+    <div class="mx-auto w-96">
+      <div class="text-center mb-8">
+        <label class="text-gray-700 text-2xl settings-header">
+          Bilgilerinizi Güncelleyin
+        </label>
+      </div>
+      <img
+        class="object-cover w-32 h-32 border-2 border-indigo-500 rounded-full mx-auto mb-6"
+        alt="mentor avatar"
+        src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80"
+      />
+      <input type="file" id="upload" accept="image/*" hidden />
+      <label
+        for="upload"
+        class="py-2 px-2 bg-indigo-500 w-48 cursor-pointer rounded ring-indigo-500 ring-offset-indigo-200 ring-2 ring-offset-2 text-white mx-auto block text-center focus:ring-indigo-500 focus:ring-offset-indigo-200"
+      >
+        Resim Seçin
+      </label>
+
+      <div class="relative mt-8">
         <label class="text-gray-700"> İsim </label>
         <input
           type="text"
@@ -57,7 +74,7 @@
         </label>
 
         <div>
-          <label for="price" class="block text-sm font-medium text-gray-700">
+          <label class="block text-sm font-medium text-gray-700">
             Saatlik Ücret
           </label>
           <div class="mt-1 relative rounded-md shadow-sm">
@@ -89,22 +106,29 @@
         Güncelle
       </button>
     </div>
+    <img src="@/assets/man.png" alt="man" class="mx-auto mt-8" />
   </div>
 </template>
 
 <script>
 import axios from "axios";
+
+let userFirstname = "";
+let userLastname = "";
+let userEmail = "";
+let mentor_about = "";
+let hour_price = "";
 export default {
   name: "Settings",
   data() {
     return {
-      firstName: "",
-      lastName: "",
-      email: "",
+      firstName: userFirstname,
+      lastName: userLastname,
+      email: userEmail,
       password: "",
       userType: "",
-      mentor_about: "",
-      hour_price: 0,
+      mentor_about,
+      hour_price,
     };
   },
   methods: {
@@ -155,9 +179,20 @@ export default {
   },
   beforeCreate() {
     let userType = localStorage.getItem("whoIs");
+    userFirstname = localStorage.getItem("firstname");
+    userLastname = localStorage.getItem("lastname");
+    userEmail = localStorage.getItem("email");
+    mentor_about = localStorage.getItem("mentor_about");
+    hour_price = localStorage.getItem("hour_price");
     this.$store.state.userType = userType;
   },
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+@import url("https://fonts.googleapis.com/css2?family=Rubik&display=swap");
+
+.settings-header {
+  font-family: "Rubik", sans-serif;
+}
+</style>

@@ -199,6 +199,7 @@ export default {
           localStorage.setItem("token", res.data.token);
           localStorage.setItem("email", this.user.email);
           localStorage.setItem("whoIs", whoIs);
+
           let parsedToken = parseJwt(res.data.token);
           console.log("parsed ", parsedToken);
           let userIdToLStorage = parsedToken.id;

@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex flex-col w-64 h-screen px-4 py-8 bg-white border-r sticky top-0 left-0"
+    class="flex flex-col w-64 h-screen px-4 py-8 shadow-2xl sticky top-0 left-0"
   >
     <router-link
       to="/"
@@ -27,7 +27,7 @@
       <input
         type="text"
         v-model="searchMentor"
-        class="w-full py-2 rounded-full pl-10 pr-4 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-blue-500 focus:outline-none focus:ring"
+        class="w-full py-2 rounded pl-10 pr-4 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-blue-500 focus:outline-none focus:ring"
         placeholder="Danışman Ara"
       />
     </div>
@@ -36,8 +36,11 @@
       <nav>
         <button
           v-if="this.$store.state.userType == 'users'"
-          class="flex w-full items-center px-4 py-2 focus:outline-none text-gray-700 rounded-md"
-          :class="{ 'bg-gray-200': this.$store.state.nowTab == 'mentors' }"
+          class="flex w-full items-center px-4 py-2 focus:outline-none hover:bg-indigo-500 hover:text-gray-50 rounded-md"
+          :class="{
+            'text-gray-50': this.$store.state.nowTab == 'mentors',
+            'bg-indigo-600': this.$store.state.nowTab == 'mentors',
+          }"
           @click="changeTab('mentors')"
         >
           <svg
@@ -59,8 +62,11 @@
         </button>
 
         <button
-          class="flex w-full items-center px-4 py-2 mt-5 text-gray-600 focus:outline-none transition-colors duration-200 transform rounded-md hover:bg-gray-200 hover:text-gray-700"
-          :class="{ 'bg-gray-200': this.$store.state.nowTab == 'meetings' }"
+          class="flex w-full items-center px-4 py-2 mt-5 focus:outline-none transition-colors duration-200 transform rounded-md hover:bg-indigo-500 hover:text-gray-50"
+          :class="{
+            'text-gray-50': this.$store.state.nowTab == 'meetings',
+            'bg-indigo-600': this.$store.state.nowTab == 'meetings',
+          }"
           @click="changeTab('meetings')"
         >
           <ion-icon name="calendar-number-outline" size="small"></ion-icon>
@@ -70,7 +76,11 @@
 
         <button
           v-if="this.$store.state.userType == 'users'"
-          class="flex w-full items-center px-4 py-2 mt-5 text-gray-600 transition-colors focus:outline-none duration-200 transform rounded-md hover:bg-gray-200 hover:text-gray-700"
+          class="flex w-full items-center px-4 py-2 mt-5 transition-colors focus:outline-none duration-200 transform rounded-md hover:bg-indigo-500 hover:text-gray-50"
+          :class="{
+            'text-gray-50': this.$store.state.nowTab == 'credit',
+            'bg-indigo-600': this.$store.state.nowTab == 'credit',
+          }"
           @click="changeTab('credit')"
         >
           <ion-icon name="logo-paypal"></ion-icon>
@@ -79,8 +89,11 @@
         </button>
 
         <button
-          class="flex w-full items-center px-4 py-2 mt-5 text-gray-600 transition-colors focus:outline-none duration-200 transform rounded-md hover:bg-gray-200 hover:text-gray-700"
-          :class="{ 'bg-gray-200': this.$store.state.nowTab == 'settings' }"
+          class="flex w-full items-center px-4 py-2 mt-5 transition-colors focus:outline-none duration-200 transform rounded-md hover:bg-indigo-500 hover:text-gray-50"
+          :class="{
+            'text-gray-50': this.$store.state.nowTab == 'settings',
+            'bg-indigo-600': this.$store.state.nowTab == 'settings',
+          }"
           @click="changeTab('settings')"
         >
           <svg
@@ -111,7 +124,7 @@
         <hr class="my-6" />
 
         <div
-          class="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-200 transform rounded-md hover:bg-gray-200 hover:text-gray-700 cursor-pointer"
+          class="flex items-center px-4 py-2 mt-5 transition-colors duration-200 transform rounded-md hover:bg-indigo-500 hover:text-gray-50 cursor-pointer"
           @click="logout"
         >
           <ion-icon name="exit-outline" class="exit-logo"></ion-icon>
@@ -186,43 +199,46 @@ export default {
         .get(`https://kguproject.herokuapp.com/api/${userType}/${mentorID}`)
         .then((response) => {
           console.log("basarili");
-          if (userType == "users") {
-            user = response.data.user;
-            console.log(user);
-            this.name = user.firstname + " " + user.lastname;
-          } else if (userType == "mentors") {
+          if (userType == "mentors") {
             mentor = response.data.mentor;
             console.log(mentor);
             this.name = mentor.firstname + " " + mentor.lastname;
+            localStorage.setItem("firstname", mentor.firstname);
+            localStorage.setItem("lastname", mentor.lastname);
+            localStorage.setItem("mentor_about", mentor.mentor_about);
+            localStorage.setItem("hour_price", mentor.hour_price);
           }
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-    } else if (userID != undefined) {
-      axios
-        .get(`https://kguproject.herokuapp.com/api/${userType}/${userID}`)
-        .then((response) => {
-          console.log("basarili");
-          if (userType == "users") {
-            user = response.data.user;
-            console.log(user);
-            this.name = user.firstname + " " + user.lastname;
-            this.credit = user.current_jeton;
-            localStorage.setItem("userCredit", user.current_jeton);
-          } else if (userType == "mentors") {
-            mentor = response.data.mentor;
-            console.log(mentor);
-            this.name = mentor.firstname + " " + mentor.lastname;
-          }
-
-          localStorage.setItem("userId", user._id);
-          console.log(user._id);
         })
         .catch(function (error) {
           console.log(error);
         });
     }
+    axios
+      .get(`https://kguproject.herokuapp.com/api/${userType}/${userID}`)
+      .then((response) => {
+        console.log("basarili");
+        if (userType == "users") {
+          user = response.data.user;
+          console.log(user);
+          this.name = user.firstname + " " + user.lastname;
+          localStorage.setItem("firstname", user.firstname);
+          localStorage.setItem("lastname", user.lastname);
+          this.credit = user.current_jeton;
+          localStorage.setItem("userCredit", user.current_jeton);
+        } else if (userType == "mentors") {
+          mentor = response.data.mentor;
+          console.log("sss" + mentor);
+          this.name = mentor.firstname + " " + mentor.lastname;
+          localStorage.setItem("firstname", mentor.firstname);
+          localStorage.setItem("lastname", mentor.lastname);
+        }
+
+        localStorage.setItem("userId", user._id);
+        console.log(user._id);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   },
 };
 </script>

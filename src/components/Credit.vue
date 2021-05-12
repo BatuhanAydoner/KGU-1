@@ -1,11 +1,11 @@
 <template>
   <div class="flex justify-center items-center mt-8">
-    <div class="relative">
-      <label for="name-with-label" class="text-gray-700"> Kredi Miktari </label>
+    <div class="relative mt-16">
+      <label class="text-gray-700 text-xl credit-header"> Kredi Miktari </label>
       <input
-        type="text"
+        type="number"
         id="name-with-label"
-        class="rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+        class="rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent mt-2"
         name="email"
         v-model="credit"
         placeholder="Miktar (Örn: 45)"
@@ -19,6 +19,11 @@
         Kredi Al
       </button>
     </div>
+    <img
+      src="@/assets/credit.png"
+      alt="credit"
+      class="absolute bottom-0 w-4/12"
+    />
   </div>
 </template>
 
@@ -56,4 +61,10 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+@import url("https://fonts.googleapis.com/css2?family=Rubik&display=swap");
+
+.credit-header {
+  font-family: "Rubik", sans-serif;
+}
+</style>
