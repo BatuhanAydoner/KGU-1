@@ -12,13 +12,7 @@
         id="img"
         :src="imgName"
       />
-      <input
-        type="file"
-        id="upload"
-        accept="image/*"
-        @change="previewFiles"
-        hidden
-      />
+      <input type="file" id="upload" accept="image/*" hidden />
       <label
         for="upload"
         class="py-2 px-2 bg-indigo-500 w-48 cursor-pointer rounded ring-indigo-500 ring-offset-indigo-200 ring-2 ring-offset-2 text-white mx-auto block text-center focus:ring-indigo-500 focus:ring-offset-indigo-200"
@@ -141,24 +135,10 @@ export default {
     };
   },
   methods: {
-    previewFiles(event) {
-      console.log(event.target.files[0]);
-      this.imgName = URL.createObjectURL(event.target.files[0]);
-    },
     updateInfos() {
       let self = this;
       let userId = localStorage.getItem("userId");
       let mentorID = localStorage.getItem("mentorId");
-
-      var file = document.querySelector("input[type=file]").files[0];
-      var reader = new FileReader();
-      reader.onload = function (e) {
-        this.imgName = e.target.result;
-      };
-      reader.onerror = function (error) {
-        alert(error);
-      };
-      reader.readAsDataURL(file);
 
       if (mentorID != undefined) {
         axios
@@ -171,7 +151,7 @@ export default {
               password: self.password,
               mentor_about: self.mentor_about,
               hour_price: self.hour_price,
-              photo_path: self.imgName,
+              // photo_path: formatData,
             }
           )
           .then(function (response) {
