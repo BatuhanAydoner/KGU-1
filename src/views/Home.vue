@@ -8,6 +8,7 @@
           this.$store.state.userType == 'users'
         "
       />
+      <SearchMentor v-if="this.$store.state.nowTab === 'search'" />
       <Meeting v-if="this.$store.state.nowTab === 'meetings'" />
       <Credit
         v-if="
@@ -25,6 +26,7 @@
 import NavBarLogged from "../components/NavBar";
 import Mentors from "../components/Mentors";
 import Meeting from "../components/Meeting";
+import SearchMentor from "@/components/SearchMentor";
 import Credit from "../components/Credit";
 import Settings from "../components/Settings";
 import SearchUser from "../components/SearchMentor";
@@ -46,6 +48,7 @@ export default {
     Mentors,
     Meeting,
     Credit,
+    SearchMentor,
     Settings,
     SearchUser,
   },

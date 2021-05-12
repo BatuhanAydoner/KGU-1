@@ -1,38 +1,15 @@
 <template>
   <div
-    class="flex flex-col w-64 h-screen px-4 py-8 shadow-2xl sticky top-0 left-0"
+    class="flex flex-col w-64 h-screen px-4 py-8 shadow-2xl sticky top-0 left-0 text-gray-500"
   >
     <router-link
       to="/"
-      class="flex items-center justify-center title-font font-medium items-center text-gray-900 mb-4 md:mb-0"
+      class="flex items-center justify-center title-font font-medium items-center text-gray-900 mb-4 mt-4 md:mb-0"
     >
       <img src="../assets/Logo.png" class="w-28" alt="" />
     </router-link>
 
-    <div class="relative mt-6" v-if="this.$store.state.userType == 'users'">
-      <button @click="searchMentorFunc">
-        <span class="absolute inset-y-0 left-0 flex items-center pl-3">
-          <svg class="w-5 h-5 text-gray-400" viewBox="0 0 24 24" fill="none">
-            <path
-              d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            ></path>
-          </svg>
-        </span>
-      </button>
-
-      <input
-        type="text"
-        v-model="searchMentor"
-        class="w-full py-2 rounded pl-10 pr-4 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-blue-500 focus:outline-none focus:ring"
-        placeholder="Danışman Ara"
-      />
-    </div>
-
-    <div class="flex flex-col justify-between flex-1 mt-6">
+    <div class="flex flex-col justify-between flex-1 mt-16">
       <nav>
         <button
           v-if="this.$store.state.userType == 'users'"
@@ -59,6 +36,19 @@
           </svg>
 
           <span class="mx-4 font-medium">Danışmanlar</span>
+        </button>
+
+        <button
+          class="flex w-full items-center px-4 py-2 mt-5 focus:outline-none transition-colors duration-200 transform rounded-md hover:bg-indigo-500 hover:text-gray-50"
+          :class="{
+            'text-gray-50': this.$store.state.nowTab == 'search',
+            'bg-indigo-600': this.$store.state.nowTab == 'search',
+          }"
+          @click="changeTab('search')"
+        >
+          <ion-icon name="search-outline"></ion-icon>
+
+          <span class="mx-4 font-medium">Arama</span>
         </button>
 
         <button
@@ -121,7 +111,9 @@
           <span class="mx-4 font-medium">Ayarlar</span>
         </button>
 
-        <hr class="my-6" />
+        <div
+          class="mb-6 mt-1 border-b-2 border-indigo-500 border-l-2 border-r-2 h-4 rounded-b-xl text-center"
+        ></div>
 
         <div
           class="flex items-center px-4 py-2 mt-5 transition-colors duration-200 transform rounded-md hover:bg-indigo-500 hover:text-gray-50 cursor-pointer"
@@ -180,11 +172,12 @@ export default {
       this.$store.state.nowTab = tab;
     },
     searchMentorFunc() {
-      console.log("butona tiklandi");
-      this.$store.state.searchMentorKey = this.searchMentor;
-      this.searchMentor = "";
-      this.$store.state.keyForSearchMentor++;
       this.$store.state.nowTab = "credit";
+      console.log("butona tiklandi");
+      this.$store.state.searchMentorKey = "";
+      this.$store.state.searchMentorKey = this.searchMentor;
+      this.$store.state.keyForSearchMentor += 1;
+      this.searchMentor = "";
       this.$store.state.nowTab = "searchMentor";
     },
   },
