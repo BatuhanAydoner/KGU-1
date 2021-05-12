@@ -9,7 +9,7 @@
         <img
           class="object-cover w-20 h-20 border-2 border-indigo-500 rounded-full"
           alt="mentor avatar"
-          src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80"
+          :src="mentor.photo_path"
         />
       </div>
 

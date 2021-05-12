@@ -128,7 +128,7 @@
       <div class="flex items-center px-4 -mx-2">
         <img
           class="object-cover mx-2 rounded-full h-12 w-12"
-          src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80"
+          :src="photo_path"
           alt="avatar"
         />
         <div>
@@ -150,6 +150,7 @@
 <script>
 let user = "";
 let mentor = "";
+let photo_path = "";
 import axios from "axios";
 
 export default {
@@ -161,6 +162,7 @@ export default {
       name: "",
       credit: 0,
       searchMentor: "",
+      photo_path,
     };
   },
   methods: {
@@ -171,21 +173,13 @@ export default {
     changeTab(tab) {
       this.$store.state.nowTab = tab;
     },
-    searchMentorFunc() {
-      this.$store.state.nowTab = "credit";
-      console.log("butona tiklandi");
-      this.$store.state.searchMentorKey = "";
-      this.$store.state.searchMentorKey = this.searchMentor;
-      this.$store.state.keyForSearchMentor += 1;
-      this.searchMentor = "";
-      this.$store.state.nowTab = "searchMentor";
-    },
   },
   beforeCreate() {
     let userType = localStorage.getItem("whoIs");
     this.$store.state.userType = userType;
     let userID = localStorage.getItem("userId");
     let mentorID = localStorage.getItem("mentorId");
+    photo_path = localStorage.getItem("photo_path");
 
     if (mentorID != undefined) {
       axios
@@ -200,6 +194,7 @@ export default {
             localStorage.setItem("lastname", mentor.lastname);
             localStorage.setItem("mentor_about", mentor.mentor_about);
             localStorage.setItem("hour_price", mentor.hour_price);
+            localStorage.setItem("photo_path", mentor.photo_path);
           }
         })
         .catch(function (error) {
@@ -224,6 +219,8 @@ export default {
           this.name = mentor.firstname + " " + mentor.lastname;
           localStorage.setItem("firstname", mentor.firstname);
           localStorage.setItem("lastname", mentor.lastname);
+          localStorage.setItem("photo_path", mentor.photo_path);
+
         }
 
         localStorage.setItem("userId", user._id);

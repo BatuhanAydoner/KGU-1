@@ -9,9 +9,16 @@
       <img
         class="object-cover w-32 h-32 border-2 border-indigo-500 rounded-full mx-auto mb-6"
         alt="mentor avatar"
-        src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80"
+        id="img"
+        :src="imgName"
       />
-      <input type="file" id="upload" accept="image/*" hidden />
+      <input
+        type="file"
+        id="upload"
+        accept="image/*"
+        @change="previewFiles"
+        hidden
+      />
       <label
         for="upload"
         class="py-2 px-2 bg-indigo-500 w-48 cursor-pointer rounded ring-indigo-500 ring-offset-indigo-200 ring-2 ring-offset-2 text-white mx-auto block text-center focus:ring-indigo-500 focus:ring-offset-indigo-200"
@@ -129,13 +136,30 @@ export default {
       userType: "",
       mentor_about,
       hour_price,
+      imgName:
+        "https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80",
     };
   },
   methods: {
+    previewFiles(event) {
+      console.log(event.target.files[0]);
+      this.imgName = URL.createObjectURL(event.target.files[0]);
+    },
     updateInfos() {
       let self = this;
       let userId = localStorage.getItem("userId");
       let mentorID = localStorage.getItem("mentorId");
+
+      var file = document.querySelector("input[type=file]").files[0];
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        this.imgName = e.target.result;
+      };
+      reader.onerror = function (error) {
+        alert(error);
+      };
+      reader.readAsDataURL(file);
+
       if (mentorID != undefined) {
         axios
           .patch(
@@ -147,6 +171,7 @@ export default {
               password: self.password,
               mentor_about: self.mentor_about,
               hour_price: self.hour_price,
+              photo_path: self.imgName,
             }
           )
           .then(function (response) {
