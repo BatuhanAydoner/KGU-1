@@ -54,6 +54,7 @@
       <div class="relative mt-8 mb-8">
         <label class="text-gray-700"> Şifre </label>
         <input
+          autocomplete="false"
           type="password"
           v-model="password"
           class="rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
@@ -136,52 +137,63 @@ export default {
   },
   methods: {
     updateInfos() {
-      let self = this;
-      let userId = localStorage.getItem("userId");
-      let mentorID = localStorage.getItem("mentorId");
+      if (
+        this.firstName != "" &&
+        this.lastName != "" &&
+        this.email != "" &&
+        this.password != "" &&
+        this.mentor_about != "" &&
+        this.hour_price != ""
+      ) {
+        let self = this;
+        let userId = localStorage.getItem("userId");
+        let mentorID = localStorage.getItem("mentorId");
 
-      const formData = new FormData();
-      formData.append("myImage", this.state.file);
+        const formData = new FormData();
+        formData.append("myImage", this.state.file);
 
-      if (mentorID != undefined) {
-        axios
-          .patch(
-            `https://kguproject.herokuapp.com/api/mentors/update/${mentorID}`,
-            {
-              firstname: self.firstName,
-              lastname: self.lastName,
-              email: self.email,
-              password: self.password,
-              mentor_about: self.mentor_about,
-              hour_price: self.hour_price,
-              // photo_path: formatData,
-            }
-          )
-          .then(function (response) {
-            console.log(response);
-            location.reload();
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
-      } else if (userId != undefined) {
-        axios
-          .patch(
-            `https://kguproject.herokuapp.com/api/users/update/${userId}`,
-            {
-              firstname: self.firstName,
-              lastname: self.lastName,
-              email: self.email,
-              password: self.password,
-            }
-          )
-          .then(function (response) {
-            console.log(response);
-            location.reload();
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
+        if (mentorID != undefined) {
+          axios
+            .patch(
+              `https://kguproject.herokuapp.com/api/mentors/update/${mentorID}`,
+              {
+                firstname: self.firstName,
+                lastname: self.lastName,
+                email: self.email,
+                password: self.password,
+                mentor_about: self.mentor_about,
+                hour_price: self.hour_price,
+                // photo_path: formatData,
+              }
+            )
+            .then(function (response) {
+              console.log(response);
+              location.reload();
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+        } else if (userId != undefined) {
+          axios
+            .patch(
+              `https://kguproject.herokuapp.com/api/users/update/${userId}`,
+              {
+                firstname: self.firstName,
+                lastname: self.lastName,
+                email: self.email,
+                password: self.password,
+              }
+            )
+            .then(function (response) {
+              console.log(response);
+              location.reload();
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+        }
+      } else {
+        alert("Alanlar Boş Bırakılamaz");
       }
     },
   },

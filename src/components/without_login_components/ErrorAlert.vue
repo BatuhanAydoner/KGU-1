@@ -20,8 +20,15 @@
         <div class="text-sm text-gray-600 dark:text-gray-200">
           <span class="font-bold">Bir şeyler yanlış gitti </span> <br />
           <ul>
-            <li>Email zaten kayıtlı olabilir,</li>
-            <li>Email veya parola yanlış olabilir,</li>
+            <li v-if="this.$route.name == 'SignUp'">
+              Email zaten kayıtlı olabilirsiniz,
+            </li>
+            <li v-if="this.$route.name == 'Login'">
+              Email veya parola yanlış olabilirsiniz,
+            </li>
+            <li v-if="this.$route.name == 'Login'">
+              Yanlış hesap türü seçmiş olabilirsiniz.
+            </li>
           </ul>
         </div>
       </div>

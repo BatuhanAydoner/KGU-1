@@ -151,15 +151,15 @@ export default {
   display: flex;
   -ms-flex-direction: column;
   flex-direction: column;
-  min-width: 0;
+  min-width: 250px;
   word-wrap: break-word;
   background-color: #fff;
   background-clip: border-box;
 }
 
 .card-columns {
-  -webkit-column-count: 3;
-  -moz-column-count: 3;
+  -webkit-column-count: 4;
+  -moz-column-count: 4;
   column-count: 4;
   -webkit-column-gap: 1.25rem;
   -moz-column-gap: 1.25rem;
@@ -170,5 +170,27 @@ export default {
 .card-columns .card {
   display: inline-block;
   width: 100%;
+}
+
+@media only screen and (max-width: 1660px) {
+  .card-columns {
+    -webkit-column-count: 3;
+    -moz-column-count: 3;
+    column-count: 3;
+  }
+}
+@media only screen and (max-width: 1024px) {
+  .card-columns {
+    -webkit-column-count: 2;
+    -moz-column-count: 2;
+    column-count: 2;
+  }
+}
+@media only screen and (max-width: 900px) {
+  .card-columns {
+    -webkit-column-count: 1;
+    -moz-column-count: 1;
+    column-count: 1;
+  }
 }
 </style>

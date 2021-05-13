@@ -129,19 +129,29 @@
             <span class="title-font font-medium text-2xl text-indigo-600">
               ₺{{ this.mentorInfo.hour_price }}
             </span>
-
-            <date-picker
-              class="flex ml-auto"
-              v-model="value1"
-              format="DD/MM/YYYY"
-              type="date"
-              valueType="format"
-              placeholder="Tarih Seçin"
-            ></date-picker>
           </div>
+
+          <ul
+            v-for="date in dates"
+            class="text-xl mentor-description"
+            :key="date"
+          >
+            {{
+              date.date
+            }}
+            <li
+              v-for="n in date.hours"
+              class="border-b-2 cursor-pointer w-min border-indigo-300 hover:border-indigo-600 mt-2"
+              :key="n"
+            >
+              {{ n }}
+            </li>
+          </ul>
+
           <div class="">
             <button
-              class="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded"
+              v-if="this.$store.state.userType == 'users'"
+              class="flex ml-auto mt-8 text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded"
               @click="scheduleMeeting"
             >
               Randevu Al
@@ -155,9 +165,6 @@
 </template>
 
 <script>
-import DatePicker from "vue2-datepicker";
-import "vue2-datepicker/index.css";
-import "vue2-datepicker/locale/tr";
 import Footer from "@/components/Footer";
 import axios from "axios";
 
@@ -169,10 +176,10 @@ export default {
       mentorID: this.$route.params.mentorID,
       mentorInfo: [],
       value1: null,
+      dates: [],
     };
   },
   components: {
-    DatePicker,
     Footer,
   },
   beforeCreate() {
@@ -181,10 +188,11 @@ export default {
     axios
       .get(`https://kguproject.herokuapp.com/api/mentors/${mentorId}`)
       .then(function (response) {
-        console.log(response.data.mentor);
         mentor = response.data.mentor;
-        console.log(mentor);
         self.mentorInfo = mentor;
+        for (let i = 0; i < mentor.free_dates.length; i++) {
+          self.dates.push(mentor.free_dates[i]);
+        }
       })
       .catch(function (error) {
         console.log(error);

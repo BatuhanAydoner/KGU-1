@@ -8,8 +8,11 @@
     >
       <img src="../assets/Logo.png" class="w-28" alt="" />
     </router-link>
-
-    <div class="flex flex-col justify-between flex-1 mt-16">
+    <p class="mt-4 mb-1 text-center font-bold text-indigo-500">
+      Merhaba {{ firstName }}
+    </p>
+    <hr />
+    <div class="flex flex-col justify-between flex-1 mt-2">
       <nav>
         <button
           v-if="this.$store.state.userType == 'users'"
@@ -160,6 +163,7 @@ export default {
       whoIs: [],
       userID: 0,
       name: "",
+      firstName: "",
       credit: 0,
       searchMentor: "",
       photo_path,
@@ -204,11 +208,12 @@ export default {
     axios
       .get(`https://kguproject.herokuapp.com/api/${userType}/${userID}`)
       .then((response) => {
-        console.log("basarili");
+        console.log("basarili user");
         if (userType == "users") {
           user = response.data.user;
           console.log(user);
           this.name = user.firstname + " " + user.lastname;
+          this.firstName = user.firstname;
           localStorage.setItem("firstname", user.firstname);
           localStorage.setItem("lastname", user.lastname);
           this.credit = user.current_jeton;
@@ -217,10 +222,10 @@ export default {
           mentor = response.data.mentor;
           console.log("sss" + mentor);
           this.name = mentor.firstname + " " + mentor.lastname;
+          this.firstName = mentor.firstname;
           localStorage.setItem("firstname", mentor.firstname);
           localStorage.setItem("lastname", mentor.lastname);
           localStorage.setItem("photo_path", mentor.photo_path);
-
         }
 
         localStorage.setItem("userId", user._id);
