@@ -17,9 +17,13 @@
     <div class="px-4 py-2 -mx-3">
       <div class="mx-3">
         <span class="font-semibold text-red-500 dark:text-red-400">Hata</span>
-        <p class="text-sm text-gray-600 dark:text-gray-200">
-          Bilgileriniz veya Hesap Türünüz Yanlış
-        </p>
+        <div class="text-sm text-gray-600 dark:text-gray-200">
+          <span class="font-bold">Bir şeyler yanlış gitti </span> <br />
+          <ul>
+            <li>Email zaten kayıtlı olabilir,</li>
+            <li>Email veya parola yanlış olabilir,</li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>

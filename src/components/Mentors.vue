@@ -1,7 +1,7 @@
 <template>
-  <div class="flex flex-wrap items-center">
+  <div class="card-columns mx-8">
     <div
-      class="w-96 px-8 py-4 mx-auto bg-white rounded-2xl shadow-xl my-16 border-2 border-indigo-300 transform transition duration-150 hover:scale-105 hover:border-4 hover:border-indigo-600"
+      class="card w-96 px-8 py-4 mx-auto bg-white rounded-2xl shadow-xl my-16 border-2 border-indigo-300 transform transition duration-150 hover:scale-105 hover:border-4 hover:border-indigo-600"
       v-for="mentor in allMentorsList"
       :key="mentor._id"
     >
@@ -57,7 +57,6 @@ export default {
     },
   },
   beforeCreate() {
-    console.log("before create");
     axios
       .get("https://kguproject.herokuapp.com/api/mentors/all-mentors")
       .then(function (response) {
@@ -84,6 +83,33 @@ export default {
 }
 .mentor-description {
   font-family: "Rubik", sans-serif;
+}
+
+.card {
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+}
+
+.card-columns {
+  -webkit-column-count: 3;
+  -moz-column-count: 3;
+  column-count: 4;
+  -webkit-column-gap: 1.25rem;
+  -moz-column-gap: 1.25rem;
+  column-gap: 1.25rem;
+  orphans: 1;
+  widows: 1;
+}
+.card-columns .card {
+  display: inline-block;
+  width: 100%;
 }
 </style>
 

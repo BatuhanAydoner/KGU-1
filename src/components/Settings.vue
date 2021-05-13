@@ -9,7 +9,7 @@
       <img
         class="object-cover w-32 h-32 border-2 border-indigo-500 rounded-full mx-auto mb-6"
         alt="mentor avatar"
-        id="img"
+        id="myImage"
         :src="imgName"
       />
       <input type="file" id="upload" accept="image/*" hidden />
@@ -139,6 +139,9 @@ export default {
       let self = this;
       let userId = localStorage.getItem("userId");
       let mentorID = localStorage.getItem("mentorId");
+
+      const formData = new FormData();
+      formData.append("myImage", this.state.file);
 
       if (mentorID != undefined) {
         axios
