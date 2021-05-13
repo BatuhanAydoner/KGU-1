@@ -55,6 +55,17 @@
         </div>
       </div>
     </div>
+    <div
+      v-if="notFound"
+      class="w-full text-center flex items-end justify-center"
+    >
+      <p class="mt-16 text-4xl font-semibold font">Danışman Bulunamadı <span class="text-3xl">😌</span></p>
+      <img
+        class="w-96 absolute bottom-10"
+        src="@/assets/notFound.png"
+        alt="not found"
+      />
+    </div>
   </div>
 </template>
 
@@ -68,6 +79,7 @@ export default {
       allMentorsList: mentors,
       key: 0,
       searchKey: "",
+      notFound: false,
     };
   },
 
@@ -84,6 +96,7 @@ export default {
     },
 
     get() {
+      this.notFound = false;
       let searchMentorKey = this.searchKey;
       axios({
         method: "POST",
@@ -94,6 +107,11 @@ export default {
       })
         .then((response) => {
           let allMentors = response.data.mentors;
+          console.log(allMentors);
+          if (allMentors.length < 1) {
+            console.log("false oldu");
+            this.notFound = true;
+          }
 
           mentors.length = 0;
           allMentors.forEach((element) => {

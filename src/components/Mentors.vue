@@ -18,7 +18,7 @@
       </h2>
 
       <p
-        class="mt-2 text-gray-600 hover:font-bold text-same mentor-description"
+        class="mt-2 text-gray-500 hover:font-bold text-same mentor-description"
       >
         {{ mentor.mentor_about }}
       </p>
@@ -76,10 +76,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import url("https://fonts.googleapis.com/css2?family=Rubik&family=Jura:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Rubik&family=Varta:wght@700&display=swap");
 
 .mentor-name {
-  font-family: "Jura", sans-serif;
+  font-family: "Varta", sans-serif;
 }
 .mentor-description {
   font-family: "Rubik", sans-serif;
