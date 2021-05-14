@@ -9,10 +9,16 @@
       <img
         class="object-cover w-32 h-32 border-2 border-indigo-500 rounded-full mx-auto mb-6"
         alt="mentor avatar"
-        id="myImage"
+        id="img"
         :src="imgName"
       />
-      <input type="file" id="upload" accept="image/*" hidden />
+      <input
+        type="file"
+        id="upload"
+        accept="image/*"
+        @change="uploadImageHandler"
+        hidden
+      />
       <label
         for="upload"
         class="py-2 px-2 bg-indigo-500 w-48 cursor-pointer rounded ring-indigo-500 ring-offset-indigo-200 ring-2 ring-offset-2 text-white mx-auto block text-center focus:ring-indigo-500 focus:ring-offset-indigo-200"
@@ -54,7 +60,6 @@
       <div class="relative mt-8 mb-8">
         <label class="text-gray-700"> Şifre </label>
         <input
-          autocomplete="false"
           type="password"
           v-model="password"
           class="rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
@@ -76,9 +81,7 @@
         </label>
 
         <div>
-          <label class="block text-sm font-medium text-gray-700">
-            Saatlik Ücret
-          </label>
+          <label class="block text-sm font-medium text-gray-700"> Saatlik Ücret </label>
           <div class="mt-1 relative rounded-md shadow-sm">
             <div
               class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
@@ -120,6 +123,7 @@ let userLastname = "";
 let userEmail = "";
 let mentor_about = "";
 let hour_price = "";
+let image = "";
 export default {
   name: "Settings",
   data() {
@@ -131,69 +135,76 @@ export default {
       userType: "",
       mentor_about,
       hour_price,
-      imgName:
-        "https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80",
+      imgName: image
+        ? `https://kguproject.herokuapp.com/uploads/avatars/${image}`
+        : "https://kguproject.herokuapp.com/uploads/avatars/1620988066024.png",
     };
   },
   methods: {
     updateInfos() {
-      if (
-        this.firstName != "" &&
-        this.lastName != "" &&
-        this.email != "" &&
-        this.password != "" &&
-        this.mentor_about != "" &&
-        this.hour_price != ""
-      ) {
-        let self = this;
-        let userId = localStorage.getItem("userId");
-        let mentorID = localStorage.getItem("mentorId");
+      let self = this;
+      let userId = localStorage.getItem("userId");
+      let mentorID = localStorage.getItem("mentorId");
 
-        const formData = new FormData();
-        formData.append("myImage", this.state.file);
+      if (mentorID != undefined) {
+        axios
+          .post(`https://kguproject.herokuapp.com/api/mentors/update/${mentorID}`, {
+            firstname: self.firstName,
+            lastname: self.lastName,
+            email: self.email,
+            password: self.password,
+            mentor_about: self.mentor_about,
+            hour_price: self.hour_price,
+            // photo_path: formatData,
+          })
+          .then(function (response) {
+            console.log(response);
+            location.reload();
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+      } else if (userId != undefined) {
+        axios
+          .patch(`https://kguproject.herokuapp.com/api/users/update/${userId}`, {
+            firstname: self.firstName,
+            lastname: self.lastName,
+            email: self.email,
+            password: self.password,
+          })
+          .then(function (response) {
+            console.log(response);
+            location.reload();
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+      }
+    },
+    uploadImageHandler(e) {
+      let mentorID = localStorage.getItem("mentorId");
 
-        if (mentorID != undefined) {
-          axios
-            .patch(
-              `https://kguproject.herokuapp.com/api/mentors/update/${mentorID}`,
-              {
-                firstname: self.firstName,
-                lastname: self.lastName,
-                email: self.email,
-                password: self.password,
-                mentor_about: self.mentor_about,
-                hour_price: self.hour_price,
-                // photo_path: formatData,
-              }
-            )
-            .then(function (response) {
-              console.log(response);
-              location.reload();
-            })
-            .catch(function (error) {
-              console.log(error);
-            });
-        } else if (userId != undefined) {
-          axios
-            .patch(
-              `https://kguproject.herokuapp.com/api/users/update/${userId}`,
-              {
-                firstname: self.firstName,
-                lastname: self.lastName,
-                email: self.email,
-                password: self.password,
-              }
-            )
-            .then(function (response) {
-              console.log(response);
-              location.reload();
-            })
-            .catch(function (error) {
-              console.log(error);
-            });
-        }
-      } else {
-        alert("Alanlar Boş Bırakılamaz");
+      const formData = new FormData();
+      formData.append("image", e.target.files[0]);
+
+      if (mentorID != undefined) {
+        axios
+          .post(
+            `https://kguproject.herokuapp.com/api/mentors/update/${mentorID}`,
+            formData,
+            {
+              headers: {
+                "content-type": "multipart/form-data",
+              },
+            }
+          )
+          .then(function (response) {
+            console.log(response);
+            // location.reload();
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
       }
     },
   },
@@ -204,6 +215,7 @@ export default {
     userEmail = localStorage.getItem("email");
     mentor_about = localStorage.getItem("mentor_about");
     hour_price = localStorage.getItem("hour_price");
+    image = localStorage.getItem("photo_path");
     this.$store.state.userType = userType;
   },
 };
